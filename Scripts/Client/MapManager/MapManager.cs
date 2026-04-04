@@ -380,7 +380,7 @@ namespace Client
             Dictionary<string, TileData> dictionary = new Dictionary<string, TileData>();
             int num = Mathf.CeilToInt(m_piece_width / this.m_tile_width) * 3;
             num = Mathf.CeilToInt((float)num / 2f);
-            for (int i = x - num; i < x + num; i++)
+            for (int i = x - num; i < x+  num; i++)
             {
                 for (int j = y - num; j < y + num; j++)
                 {
@@ -516,7 +516,7 @@ namespace Client
             {
                 return this.m_current_map_data_tile_detail;
             }
-            //lod 5 this.m_current_map_data_tile_brief才不为空
+            //lod 5 this.m_current_map_data_tile_brief才不为空，所以这里的返回不属于lod0和1的lod数据
             return this.m_current_map_data_tile_brief;
         }
 
@@ -795,7 +795,14 @@ namespace Client
                 this.m_current_large_piece_center = centerByPos;
             }
             //lod 0.1.2.3.4.5，查看的游戏运行时只在lod 0.1时候显示
-            //这里处理的只有grove，从 CreateNewPiece方法里面的mapPiece.Refresh()里面的有个grove限制：if (mapObjectData.m_prefab_id.Contains("Grove"))
+            //这里处理的只有grove，因为 CreateNewPiece方法里面的mapPiece.Refresh()里面的有个grove限制：
+            // if (mapObjectData.m_prefab_id.Contains("Grove"))
+            // 所以这里处理的只有grove，其他的不处理，lod 2345都不处理
+            //m_current_map_data_tile_detail和m_current_map_data_tile_brief里面都没有grove，
+            // 虽然下面代码里涉及到了这俩但是这里不处理他们俩，这里只处理grove
+
+            //m_current_map_data_tile_detail和m_current_map_data_tile_brief的加载处理是在DoUpdateDynamicPiece
+            // 并不在DoUpdatePiece里面，所以这里不处理他们俩
             //lod0.1时候太近时候m_current_map_data_tile_plane和grove分开显示
             Vector2 centerByPos2 = GetCenterByPos(pos, this.m_piece_width);
             if (centerByPos2 != this.m_current_piece_center || this.m_force_update_once)
