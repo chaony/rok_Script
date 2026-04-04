@@ -23,41 +23,20 @@ namespace ILRuntime.Runtime.Generated
             Type[] args;
             Type type = typeof(UnityEngine.UI.Dropdown);
             args = new Type[]{};
-            method = type.GetMethod("get_options", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_options_0);
-            args = new Type[]{};
             method = type.GetMethod("get_onValueChanged", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_onValueChanged_1);
+            app.RegisterCLRMethodRedirection(method, get_onValueChanged_0);
             args = new Type[]{typeof(System.Int32)};
             method = type.GetMethod("set_value", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, set_value_2);
+            app.RegisterCLRMethodRedirection(method, set_value_1);
             args = new Type[]{};
-            method = type.GetMethod("RefreshShownValue", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, RefreshShownValue_3);
-            args = new Type[]{};
-            method = type.GetMethod("get_value", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_value_4);
+            method = type.GetMethod("get_options", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, get_options_2);
 
 
         }
 
 
-        static StackObject* get_options_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            UnityEngine.UI.Dropdown instance_of_this_method = (UnityEngine.UI.Dropdown)typeof(UnityEngine.UI.Dropdown).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            var result_of_this_method = instance_of_this_method.options;
-
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
-        }
-
-        static StackObject* get_onValueChanged_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_onValueChanged_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -72,7 +51,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* set_value_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* set_value_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -90,7 +69,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* RefreshShownValue_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_options_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -100,26 +79,9 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine.UI.Dropdown instance_of_this_method = (UnityEngine.UI.Dropdown)typeof(UnityEngine.UI.Dropdown).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
             __intp.Free(ptr_of_this_method);
 
-            instance_of_this_method.RefreshShownValue();
+            var result_of_this_method = instance_of_this_method.options;
 
-            return __ret;
-        }
-
-        static StackObject* get_value_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            UnityEngine.UI.Dropdown instance_of_this_method = (UnityEngine.UI.Dropdown)typeof(UnityEngine.UI.Dropdown).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            var result_of_this_method = instance_of_this_method.value;
-
-            __ret->ObjectType = ObjectTypes.Integer;
-            __ret->Value = result_of_this_method;
-            return __ret + 1;
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
 

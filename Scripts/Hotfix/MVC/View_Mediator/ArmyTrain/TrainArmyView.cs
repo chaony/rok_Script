@@ -97,8 +97,6 @@ namespace Game {
 
 		[HideInInspector] public ArabLayoutCompment m_pl_upgrade_ArabLayoutCompment;
 
-		[HideInInspector] public PolygonImage m_pl_Body;
-
 
 
         private void UIFinder()
@@ -173,7 +171,6 @@ namespace Game {
 
 			m_pl_upgrade_ArabLayoutCompment = FindUI<ArabLayoutCompment>(vb.transform ,"pl_mes/imgContentBg/pl_upgrade");
 
-            m_pl_Body = FindUI<PolygonImage>(vb.transform, "pl_mes/imgContentBg/pl_left/body");
 
             TrainArmyMediator mt = new TrainArmyMediator(vb.gameObject);
             mt.view = this;

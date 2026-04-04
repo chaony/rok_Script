@@ -611,15 +611,25 @@ namespace Game
 
         public Vector2 FindClosestAtWorldPos2(float x, float y, Dictionary<int, bool> ignoreGroupDic)
         {
+            // 将世界坐标(x,y)转换为瓦片坐标
             var tilePos = Pos2Tile(x, y);
+
+            // 限制瓦片坐标的x值在有效范围内(5到395)
             tilePos.x = Mathf.Clamp(tilePos.x, 5, 400 - 5);
+
+            // 限制瓦片坐标的y值在有效范围内(5到395)
             tilePos.y = Mathf.Clamp(tilePos.y, 5, 400 - 5);
 
+            // 在指定瓦片坐标附近查找最近的迷雾区域，忽略ignoreGroupDic中指定的迷雾组
             var pos = WarFogMgr.FindFogClosestAt(tilePos.x, tilePos.y, ignoreGroupDic);
+
+            // 将找到的迷雾瓦片坐标转换回世界坐标
             var worldPos = Tile2Pos((int)pos.x, (int)pos.y);
 
+            // 返回找到的最近迷雾区域的世界坐标
             return worldPos;
         }
+
 
         public bool HasFogAtWorldPos(float x, float y)
         {

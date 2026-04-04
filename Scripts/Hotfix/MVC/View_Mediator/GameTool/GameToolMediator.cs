@@ -1538,7 +1538,7 @@ namespace Game
             CoreUtils.dataService.QueryTable<Data.ActivityKillIntegralDefine>();
             CoreUtils.dataService.QueryTable<Data.ActivityKillTypeDefine>();
             CoreUtils.dataService.QueryTable<Data.ActivityRankingTypeDefine>();
-            CoreUtils.dataService.QueryTable<Data.ActivityRewardPreviewDefine>();
+            //CoreUtils.dataService.QueryTable<Data.ActivityRewardPreviewDefine>();
             CoreUtils.dataService.QueryTable<Data.ActivityTargetTypeDefine>();
             CoreUtils.dataService.QueryTable<Data.AllianceAttrInfoDefine>();
             CoreUtils.dataService.QueryTable<Data.AllianceBuildingDataDefine>();
@@ -1719,7 +1719,7 @@ namespace Game
             CoreUtils.dataService.QueryRecords<Data.ActivityKillIntegralDefine>();
             CoreUtils.dataService.QueryRecords<Data.ActivityKillTypeDefine>();
             CoreUtils.dataService.QueryRecords<Data.ActivityRankingTypeDefine>();
-            CoreUtils.dataService.QueryRecords<Data.ActivityRewardPreviewDefine>();
+            //CoreUtils.dataService.QueryRecords<Data.ActivityRewardPreviewDefine>();
             CoreUtils.dataService.QueryRecords<Data.ActivityTargetTypeDefine>();
             CoreUtils.dataService.QueryRecords<Data.AllianceAttrInfoDefine>();
             CoreUtils.dataService.QueryRecords<Data.AllianceBuildingDataDefine>();

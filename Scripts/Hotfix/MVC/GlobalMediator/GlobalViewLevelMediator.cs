@@ -34,6 +34,8 @@ namespace Game
         City,
         Tactical,
         TacticsToStrategy_1,
+        //它表示地图视图级别中的一个特定阶段，通常用于描述从战术视角（Tactical View）向战略视角
+        //（Strategic View）过渡的第二个阶段。
         TacticsToStrategy_2,
         Strategic,
         Nationwide,
@@ -2380,6 +2382,7 @@ namespace Game
         
         #region MAP OBJ HUD 增删改
 
+        //主要是刷新m_viewLevel 大于 MapViewLevel.Tactical的情况
         private void RefreshMapObject(LodPopDataContent objData)
         {
             //符文无需显示缩略图

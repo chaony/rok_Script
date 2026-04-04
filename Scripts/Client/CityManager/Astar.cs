@@ -267,6 +267,7 @@ namespace Client
                     if (object2.p != null)
                     {
                         float num15 = (object2.p.x - object2.x != 0) ? (Mathf.Floor((object2.p.y - object2.y) / (object2.p.x - object2.x)) * 100f) : 888f;
+
                         if (Math.Abs(num14 - num15) > 0.001f)
                         {
                             num14 = num15;

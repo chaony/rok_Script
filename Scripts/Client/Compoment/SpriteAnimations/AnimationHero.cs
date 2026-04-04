@@ -36,15 +36,15 @@ namespace Client
         private Vector3 m_focoSkillPos;
 
         /// <summary>
-        /// 技能蓄力光效名称
+        /// ????????????????
         /// </summary>
         public string m_skillFocoEffectName = string.Empty;
         /// <summary>
-        /// 技能蓄力光效延迟时间（毫秒）
+        /// ??????????????????????
         /// </summary>
         public float m_skillFocoDelayTime = 0f;
         /// <summary>
-        /// 技能蓄力光效定时器
+        /// ?????????????????
         /// </summary>
         private Timer m_skillFocoDelayTimer;
 
@@ -179,7 +179,7 @@ namespace Client
                 }
                 else
                 {
-                    // 记录还没叠加的帧
+                    // ????????????
                     int curFrame = CurFrame;
                     base.UpdateAnimation();
                     curFrame += ElapseFrame;

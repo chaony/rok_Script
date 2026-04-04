@@ -41,7 +41,7 @@ namespace Game
         private List<string> m_preLoadRes = new List<string>();
 
         private Dictionary<string, GameObject> m_assetDic = new Dictionary<string, GameObject>();
-        private Material gray_material, gray_mask_material , defaultMaterial;
+        private Material gray_material, defaultMaterial;
         List<BuildingTypeConfigDefine> buildingTypeConfigList = new List<BuildingTypeConfigDefine>();
         private List<BuildingTypeConfigDefine> m_jingjiBuildList = new List<BuildingTypeConfigDefine>();
         private List<BuildingTypeConfigDefine> m_junshiBuildList = new List<BuildingTypeConfigDefine>();
@@ -214,10 +214,6 @@ namespace Game
                 m_preLoadRes.Add(m_cityBuildingProxy.GetImgIdByType(m_jingjiBuildList[i].type));
             }
             m_preLoadRes.AddRange(view.m_sv_list_view_ListView.ItemPrefabDataList);
-            CoreUtils.assetService.LoadAssetAsync<Material>("Assets/Shader/UIMaskGray", (IAsset asset) =>
-            {
-                gray_mask_material = asset.asset() as Material;
-            });
             CoreUtils.assetService.LoadAssetAsync<Material>("UI_GrayWithMask", (IAsset asset) =>
             {
                 gray_material = asset.asset() as Material;
@@ -629,12 +625,13 @@ namespace Game
                     {
                         case BuildCityType.Buildable:
                             {
+                                itemView.m_img_bgLight_PolygonImage.gameObject.SetActive(true);
+                                itemView.m_img_bgDark_PolygonImage.gameObject.SetActive(false);
                                 itemView.m_pl_claim.gameObject.SetActive(true);
-                                itemView.m_img_bgLight_PolygonImage.color = new Color(0.75f, 1f, 1f);
                                 itemView.m_pl_lock_PolygonImage.gameObject.SetActive(false);
 
-                                itemView.m_lbl_name_LanguageText.color = new Color(0.1490196f, 0.3254902f, 0.454902f);
-                                itemView.m_lbl_desc_LanguageText.color = new Color(0.1490196f, 0.3254902f, 0.454902f);
+                                itemView.m_lbl_name_LanguageText.color = Color.black;
+                                itemView.m_lbl_desc_LanguageText.color = Color.black;
                                 PolygonImage image = buildObj.GetComponentInChildren<PolygonImage>();
                                 if(image!=null)
                                 {
@@ -672,21 +669,17 @@ namespace Game
                             break;
                         case BuildCityType.BuildMax:
                             {
-                                itemView.m_img_bgLight_PolygonImage.color = new Color(0.1f, 0.6f, 0.8f);
+                                itemView.m_img_bgLight_PolygonImage.gameObject.SetActive(false);
+                                itemView.m_img_bgDark_PolygonImage.gameObject.SetActive(true);
                                 itemView.m_pl_claim.gameObject.SetActive(false);
                                 itemView.m_pl_lock_PolygonImage.gameObject.SetActive(true);
 
                                 itemView.m_lbl_name_LanguageText.color = Color.white;
                                 itemView.m_lbl_desc_LanguageText.color = Color.white;
-                                PolygonImage[] images = buildObj.GetComponentsInChildren<PolygonImage>();
-                                foreach (var image in images)
+                                PolygonImage image = buildObj.GetComponentInChildren<PolygonImage>();
+                                if (image != null)
                                 {
                                     image.material = gray_material;
-                                }
-                                PolygonImageMask imageMask = buildObj.GetComponentInChildren<PolygonImageMask>();
-                                if (imageMask != null)
-                                {
-                                    imageMask.SetMaterial(gray_mask_material);
                                 }
                                 itemView.m_lbl_lock_LanguageText.text = LanguageUtils.getText(180500);
                                 itemView.m_btn_btn_GameButton.onClick.RemoveAllListeners();
@@ -695,21 +688,17 @@ namespace Game
                             break;
                         case BuildCityType.Notunlock:
                             {
-                                itemView.m_img_bgLight_PolygonImage.color = new Color(0.1f, 0.6f, 0.8f);
+                                itemView.m_img_bgLight_PolygonImage.gameObject.SetActive(false);
+                                itemView.m_img_bgDark_PolygonImage.gameObject.SetActive(true);
                                 itemView.m_pl_claim.gameObject.SetActive(false);
                                 itemView.m_pl_lock_PolygonImage.gameObject.SetActive(true);
 
                                 itemView.m_lbl_name_LanguageText.color = Color.white;
                                 itemView.m_lbl_desc_LanguageText.color = Color.white;
-                                PolygonImage[] images = buildObj.GetComponentsInChildren<PolygonImage>();
-                                foreach (var image in images)
+                                PolygonImage image = buildObj.GetComponentInChildren<PolygonImage>();
+                                if (image != null)
                                 {
                                     image.material = gray_material;
-                                }
-                                PolygonImageMask imageMask = buildObj.GetComponentInChildren<PolygonImageMask>();
-                                if (imageMask != null)
-                                {
-                                    imageMask.SetMaterial(gray_mask_material);
                                 }
                                 itemView.m_lbl_lock_LanguageText.text = LanguageUtils.getTextFormat(180501, m_cityBuildingProxy.GetBuildCountNext(buildingType.type));
                                 itemView.m_btn_btn_GameButton.onClick.RemoveAllListeners();

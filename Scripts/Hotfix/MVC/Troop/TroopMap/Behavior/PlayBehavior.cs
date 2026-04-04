@@ -176,6 +176,7 @@ namespace Hotfix
             Vector2 attackPos = GetAttackPos(formationTroop, armyData);
             WorldMapLogicMgr.Instance.MapTroopHandler.GetITroopMgr().ChangeFormationState(
                 formationTroop.GetFormationType(), armyData.objectId, Troops.ENMU_SQUARE_STAT.FIGHT, pos, attackPos);
+
             WorldMapLogicMgr.Instance.MapTroopHandler.GetITroopMgr().ChangeFormationState(
                 formationTroop.GetFormationType(), armyData.objectId,
                 Troops.ENMU_SQUARE_STAT.FIGHT, pos, attackPos);

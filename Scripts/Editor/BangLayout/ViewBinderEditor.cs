@@ -18,6 +18,16 @@ public class BangLayoutEditor : Editor
     private Vector2Int GetGameViewSize()
     {
         System.Type T = System.Type.GetType("UnityEditor.GameView,UnityEditor");
+        if (T == null)
+        {
+            // 备选方案
+            T = typeof(UnityEditor.EditorWindow).Assembly.GetType("UnityEditor.GameView");
+        }
+        if (T == null)
+        {
+            Debug.LogError("无法获取GameView类型");
+            return new Vector2Int(0, 0);
+        }
         System.Reflection.MethodInfo GetMainGameView = T.GetMethod("GetMainGameView", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
         System.Object Res = GetMainGameView.Invoke(null, null);
         var gameView = (UnityEditor.EditorWindow)Res;

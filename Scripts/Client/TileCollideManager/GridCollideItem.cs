@@ -166,23 +166,6 @@ namespace Client
             Vector3 vector2 = new Vector3(globalRect.m_world_corners[1].x, 0f, globalRect.m_world_corners[1].y);
             Vector3 vector3 = new Vector3(globalRect.m_world_corners[2].x, 0f, globalRect.m_world_corners[2].y);
             Vector3 vector4 = new Vector3(globalRect.m_world_corners[3].x, 0f, globalRect.m_world_corners[3].y);
-            vector -= transform.position;
-            vector2 -= transform.position;
-            vector3 -= transform.position;
-            vector4 -= transform.position;
-            vector = vector * 0.8f;
-            vector2 = vector2 * 0.8f;
-            vector3 = vector3 * 0.8f;
-            vector4 = vector4 * 0.8f;
-            vector = Quaternion.AngleAxis(45, Vector3.left) * vector;
-            vector2 = Quaternion.AngleAxis(45, Vector3.left) * vector2;
-            vector3 = Quaternion.AngleAxis(45, Vector3.left) * vector3;
-            vector4 = Quaternion.AngleAxis(45, Vector3.left) * vector4;
-
-            vector += transform.position;
-            vector2 += transform.position;
-            vector3 += transform.position;
-            vector4 += transform.position;
             Gizmos.DrawLine(vector, vector2);
             Gizmos.DrawLine(vector2, vector3);
             Gizmos.DrawLine(vector3, vector4);

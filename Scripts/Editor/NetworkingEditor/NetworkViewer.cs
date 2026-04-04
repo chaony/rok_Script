@@ -37,15 +37,19 @@ namespace IGG.Networking
         {
             var typeGameView = typeof(EditorWindow).Assembly.GetType("UnityEditor.GameView");
             var gameView = GetWindow(typeGameView);
-            /*bool maximizeOnPlay = false;
+            bool maximizeOnPlay = false;
             if (gameView != null)
             {
-                maximizeOnPlay = (bool)GetInstanceField(typeGameView, gameView, "m_MaximizeOnPlay");
+                var field = GetInstanceField(typeGameView, gameView, "m_MaximizeOnPlay");
+                if (field != null)
+                {
+                    maximizeOnPlay = (bool)field;
+                }
             }
             if (maximizeOnPlay)
             {
                 return;
-            }*/
+            }
             var type2 = typeof(EditorWindow).Assembly.GetType("UnityEditor.InspectorWindow");
             GetWindow<NetworkViewer>(null, false, type2);
         }
@@ -55,6 +59,7 @@ namespace IGG.Networking
             BindingFlags bindFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
                                      | BindingFlags.Static;
             FieldInfo field = type.GetField(fieldName, bindFlags);
+            if (field == null) return null;  // 添加空值检查
             return field.GetValue(instance);
         }
 

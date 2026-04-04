@@ -18,7 +18,6 @@ using Data;
 using System;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using System.IO;
 
 namespace Game {
     public class TrainArmyResCost
@@ -424,31 +423,11 @@ namespace Game {
             {
                 view.m_btn_up_GameButton.gameObject.SetActive(IsShowUpStatus(m_selectIndex));
             }
-
-            view.m_pl_Body.sprite = null;
-
-            string bodyPath = m_armyList[m_selectIndex].armsShow + "_Body.png";
-            Debug.Log(bodyPath);
-            view.m_pl_Body.gameObject.SetActive(false);
-            view.m_pl_spine_SkeletonGraphic.gameObject.SetActive(false);
-
-            CoreUtils.assetService.LoadAssetAsync<Sprite>(bodyPath, (sprite) => 
-            { 
-                Sprite s = (Sprite)sprite.asset();
-                if (sprite == null || s == null)
-                {
-                    if (isRefreshSpine)
-                    {
-                        RefreshSpine();
-                        RefreshDesc();
-                    }
-                    return;
-                }
-                view.m_pl_Body.sprite = s;
-                view.m_pl_Body.SetNativeSize();
-                view.m_pl_Body.transform.localScale = new Vector3(1.2f, 1.2f);
-                view.m_pl_Body.gameObject.SetActive(true);
-            });
+            if (isRefreshSpine)
+            {
+                RefreshSpine();
+                RefreshDesc();
+            }
         }
 
         //是否显示升级状态

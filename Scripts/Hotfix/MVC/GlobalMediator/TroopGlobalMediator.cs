@@ -198,6 +198,7 @@ namespace Game
                 case Rally_ReinforceRally.TagName:
                     OnRallyReinforceErrorCode(notification);
                     break;
+
                 case   Rally_RepatriationRally.TagName:
                     OnRally_RepatriationRallyErrorCode(notification);
                     break;

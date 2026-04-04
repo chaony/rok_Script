@@ -55,24 +55,24 @@ namespace Game
                             string str = LanguageUtils.getTextFormat(128012, LanguageUtils.getText(itemDefine.l_nameID), ClientUtils.FormatComma(result.itemNum));
                             Tip.CreateTip(str).Show();
 
-                            if (itemDefine.itemFunction == 10) //王国地图
+                            if (itemDefine.itemFunction == 10) //???????
                             {
                                 if (result.HasRewardInfo)
                                 {
                                     CoreUtils.uiManager.ShowUI(UI.s_itemCollection, null, result);
                                 }
                             }
-                            else if (itemDefine.itemFunction == 13)//工人招募
+                            else if (itemDefine.itemFunction == 13)//???????
                             {
-                                if (result.status == 1)//成功扩充第二队列
+                                if (result.status == 1)//?????????????
                                 {
                                     Tip.CreateTip(180523).Show();
                                 }
-                                else if (result.status == 2)//第二队列时间延长
+                                else if (result.status == 2)//?????????????
                                 {
                                     Tip.CreateTip(180534).Show();
                                 }
-                                else if (result.status == 3)//道具回收处理
+                                else if (result.status == 3)//??????????
                                 {
                                     if (result.HasRewardInfo)
                                     {
@@ -80,7 +80,7 @@ namespace Game
                                     }
                                 }
                             }
-                            else if (itemDefine.itemFunction == 12) //召唤怪物
+                            else if (itemDefine.itemFunction == 12) //???????
                             {
                                 if (result.pos == null)
                                 {

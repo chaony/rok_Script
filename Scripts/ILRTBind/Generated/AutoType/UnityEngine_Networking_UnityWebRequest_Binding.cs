@@ -43,25 +43,10 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{};
             method = type.GetMethod("get_downloadedBytes", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, get_downloadedBytes_6);
-            args = new Type[]{typeof(UnityEngine.Networking.UploadHandler)};
-            method = type.GetMethod("set_uploadHandler", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, set_uploadHandler_7);
-            args = new Type[]{typeof(UnityEngine.Networking.DownloadHandler)};
-            method = type.GetMethod("set_downloadHandler", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, set_downloadHandler_8);
-            args = new Type[]{};
-            method = type.GetMethod("get_responseCode", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_responseCode_9);
-            args = new Type[]{};
-            method = type.GetMethod("get_downloadHandler", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_downloadHandler_10);
 
             args = new Type[]{typeof(System.String), typeof(System.String), typeof(UnityEngine.Networking.DownloadHandler), typeof(UnityEngine.Networking.UploadHandler)};
             method = type.GetConstructor(flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, Ctor_0);
-            args = new Type[]{typeof(System.String), typeof(System.String)};
-            method = type.GetConstructor(flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Ctor_1);
 
         }
 
@@ -190,76 +175,6 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* set_uploadHandler_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            UnityEngine.Networking.UploadHandler @value = (UnityEngine.Networking.UploadHandler)typeof(UnityEngine.Networking.UploadHandler).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            UnityEngine.Networking.UnityWebRequest instance_of_this_method = (UnityEngine.Networking.UnityWebRequest)typeof(UnityEngine.Networking.UnityWebRequest).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            instance_of_this_method.uploadHandler = value;
-
-            return __ret;
-        }
-
-        static StackObject* set_downloadHandler_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            UnityEngine.Networking.DownloadHandler @value = (UnityEngine.Networking.DownloadHandler)typeof(UnityEngine.Networking.DownloadHandler).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            UnityEngine.Networking.UnityWebRequest instance_of_this_method = (UnityEngine.Networking.UnityWebRequest)typeof(UnityEngine.Networking.UnityWebRequest).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            instance_of_this_method.downloadHandler = value;
-
-            return __ret;
-        }
-
-        static StackObject* get_responseCode_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            UnityEngine.Networking.UnityWebRequest instance_of_this_method = (UnityEngine.Networking.UnityWebRequest)typeof(UnityEngine.Networking.UnityWebRequest).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            var result_of_this_method = instance_of_this_method.responseCode;
-
-            __ret->ObjectType = ObjectTypes.Long;
-            *(long*)&__ret->Value = result_of_this_method;
-            return __ret + 1;
-        }
-
-        static StackObject* get_downloadHandler_10(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            UnityEngine.Networking.UnityWebRequest instance_of_this_method = (UnityEngine.Networking.UnityWebRequest)typeof(UnityEngine.Networking.UnityWebRequest).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            var result_of_this_method = instance_of_this_method.downloadHandler;
-
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
-        }
-
 
         static StackObject* Ctor_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
@@ -284,25 +199,6 @@ namespace ILRuntime.Runtime.Generated
 
 
             var result_of_this_method = new UnityEngine.Networking.UnityWebRequest(@url, @method, @downloadHandler, @uploadHandler);
-
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
-        }
-
-        static StackObject* Ctor_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.String @method = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            System.String @url = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-
-            var result_of_this_method = new UnityEngine.Networking.UnityWebRequest(@url, @method);
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }

@@ -22,21 +22,11 @@ using System.Globalization;
 using Client;
 
 namespace Game {
-    public class ServerImformation
-    {
-        public string servername;
-        public string host;
-        public int port;
-        public string sid;
-    }
-
     public class PlayerProxy : GameProxy {
 
         #region Member
         public const string ProxyNAME = "PlayerProxy";
-        public static string signKey = "362a5b5bd8e36dc148e706f5c0903416";
-        public static ServerImformation[] serverImformations;
-        public static ServerImformation curServerImformation;
+
         public static bool LoginInitIsFinish = false;
 
         public static bool IsFogSystemInited = false;

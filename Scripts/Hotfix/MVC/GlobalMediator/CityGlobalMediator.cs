@@ -1368,6 +1368,14 @@ namespace Game
             }
         }
 
+        //通义解释：
+        // 在这段代码中，rid 是 Role ID 的缩写，表示当前玩家的角色ID。具体来说：
+        // m_playerProxy.CurrentRoleInfo.rid 获取的是当前玩家的角色ID。
+        // othercity 是遍历的每个城市的ID。
+        // if (othercity != m_playerProxy.CurrentRoleInfo.rid) 的作用是排除当前玩家自己的城市，只对其他玩家的城市进行操作。
+        // 总结：
+        // rid 是当前玩家的角色ID。
+        // 这段代码的目的是为其他玩家（非当前玩家）的城市启动建筑相关的逻辑。
         public void StartOtherBuilder()
         {
             foreach (var othercity in m_globalViewLevelMediator.m_isViewCityID)
@@ -1619,9 +1627,8 @@ namespace Game
                             var PatrolDummy = gameObject.transform.Find("PatrolDummy");
                             if (PatrolDummy)
                             {
-                                //删除巡逻点
-                                //cityObjData.cityWallPatrolSoldierDummy =
-                                //    PatrolDummy.GetComponent<PatrolSoldier>();
+                                cityObjData.cityWallPatrolSoldierDummy =
+                                    PatrolDummy.GetComponent<PatrolSoldier>();
                             }
                             var groundCollider = gameObject.transform.Find("groundCollider");
                             if (groundCollider)
@@ -1791,7 +1798,7 @@ namespace Game
                         var PatrolDummy = gameObject.transform.Find("PatrolDummy");
                         if (PatrolDummy)
                         {
-                            //m_cityWallPatrolSoldierDummy = PatrolDummy.GetComponent<PatrolSoldier>();
+                            m_cityWallPatrolSoldierDummy = PatrolDummy.GetComponent<PatrolSoldier>();
                         }
                         var groundCollider = gameObject.transform.Find("groundCollider");
                         if (groundCollider)
@@ -4203,6 +4210,7 @@ namespace Game
             }
 
             Vector2 size = GetBuildCellRow(type);
+            //CITY_GRID_SIZE_RECIPROCAL 是 1 / GRID_SIZE 的值，用于将局部坐标转换为网格坐标。
             return new Vector2(Mathf.Floor((xLocal - size.x * 0.05f) * CityObjData.CITY_GRID_SIZE_RECIPROCAL + 0.55f),
                 Mathf.Floor((yLocal - size.y * 0.05f) * CityObjData.CITY_GRID_SIZE_RECIPROCAL + 0.55f));
         }

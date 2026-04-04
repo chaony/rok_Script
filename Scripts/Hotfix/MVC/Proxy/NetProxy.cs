@@ -261,9 +261,9 @@ namespace Game
             this.serverNode = serverNode;
 
             _eLoginState = ELoginState.EAuth1;
+
             Task.Run(()=>{
                 
-                Debug.Log("setLoginInfo connect"+serverHost+":"+serverPort);
                 NetClient.Connect(serverHost, serverPort);
             });
             
@@ -275,7 +275,6 @@ namespace Game
             logService.Info(_eLoginState+"网络层状态改变 " + @event.ToString()+"  底层错误码:"+error+"  "+clientSdkIP+" :"+serverNode, Color.green);
             if (connectEvent != null)
             {
-                Debug.Log("OnNetEvent invoke "+@event);
                 connectEvent(@event,error);
             }
 
@@ -291,7 +290,7 @@ namespace Game
         /// </summary>
         private void SendRedirectionAuth()
         {
-            Debug.Log("SendRedirectionAuth invoke");
+
             try
             {
                 //username:index:hmac username->base64(uid)@base64(servername)#base64(subid)
@@ -310,7 +309,6 @@ namespace Game
             }
             catch (Exception e)
             {
-                Tip.CreateTip($"无法连接到服务器{NetEvent.ConnectFail}。").Show();
                 AppFacade.GetInstance().SendNotification(CmdConstant.NetEvent, NetEvent.ConnectFail,"0");
             }
            
@@ -761,6 +759,7 @@ namespace Game
                         break;
                     case ELoginState.EAuth1:
 
+
                         OnAuth(ELoginState.EAuth2);
                         challenge = packt.ToArray();
                         challenge = Convert.FromBase64String(Encoding.Default.GetString(challenge).Trim('\0'));
@@ -771,6 +770,7 @@ namespace Game
                         handshake = Encoding.Default.GetBytes(Convert.ToBase64String(handshake));
 
                         SendHttpLine(handshake);
+
                         break;
                     case ELoginState.EAuth2:
 
@@ -1309,21 +1309,18 @@ namespace Game
         {
             var _playerProxy = AppFacade.GetInstance().RetrieveProxy(PlayerProxy.ProxyNAME) as PlayerProxy;
             _playerProxy = AppFacade.GetInstance().RetrieveProxy(PlayerProxy.ProxyNAME) as PlayerProxy;
-            Debug.LogFormat("链接网络 user:[{0}]   pwd:[{1}] serverIP:「{2}」 serverPort:[{3}] serverNode :{4}", this.MUserName, this.MPassword,this.MServerIp,this.MServerPort,this.MServerNode);
+            Debug.LogFormat("链接网络 user:[{0}]   pwd:[{1}] serverIP:「{2}」 serverNode :{3}", this.MUserName, this.MPassword,this.MServerIp,this.MServerNode);
             netClient = SprotoSocketAp.CreateInstance(this.MServerIp, MServerPort, OnNetEvent, OnAuthEvent);
 
             string ip = IGGSDKConstant.IGGDefault.AppConfigIP;
             if (IGGSDK.appConfig != null)
             {
-                Debug.LogFormat("IGGSDK ip0:[{0}]", ip);
                 ip = IGGSDK.appConfig.getClientIp();
                 if (string.IsNullOrEmpty(ip))
                 {
                     ip = "127.0.0.1";
                 }
-                 Debug.LogFormat("IGGSDK ip1:[{0}]", ip);
             }
-            Debug.LogFormat("IGGSDK config is null [{0}]",ip);
             string platform = "3";
 #if UNITY_IOS
             platform = "1";
@@ -1406,7 +1403,6 @@ namespace Game
         {
             Task.RunInMainThread(() =>
             {
-                
                 AppFacade.GetInstance().SendNotification(CmdConstant.NetEvent, @event,error.ToString());
                 if (netClient.IsNetworkingViewerEnable)
                 {

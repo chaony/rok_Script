@@ -109,5 +109,6 @@ namespace Game {
         {
             AppFacade.GetInstance().RemoveView(vb);
         }
+
     }
 }

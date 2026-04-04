@@ -165,7 +165,7 @@ namespace Game {
         private void OnTextChange(string text)
         {
             view.m_ipt_name_GameInput.onValueChanged.RemoveListener(OnTextChange);
-            string temp = text;//Regex.Replace(text, @"[\u4e00-\u9fa5\u0800-\u4e00\uac00-\ud7ff]+", "");
+            string temp = Regex.Replace(text, @"[\u4e00-\u9fa5\u0800-\u4e00\uac00-\ud7ff]+", "");
             if(temp.Length<nameMinLimit)
             {
                 button.interactable = false;

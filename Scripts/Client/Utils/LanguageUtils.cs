@@ -12,7 +12,7 @@ using UnityEngine.UI;
 
 namespace Skyunion
 {
-    public class LanguageDefine
+    internal class LanguageDefine
     {
         /// <summary> 
         /// 编号

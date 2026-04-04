@@ -240,7 +240,8 @@ namespace Game
                     var loginserver = serverConfig.LoginServer[0];
                     var nexProxy = AppFacade.GetInstance().RetrieveProxy(NetProxy.ProxyNAME) as NetProxy;
                     //nexProxy.SaveLoginInfo(loginserver.host, loginserver.port, session.getIGGId(), session.getAccesskey(), "");
-                    nexProxy.SaveLoginInfo("104.233.171.110", 40001, session.getIGGId(), session.getAccesskey(), "");
+                    //nexProxy.SaveLoginInfo("oc.stoneagewm.com", 44444, session.getIGGId(), session.getAccesskey(), "");
+                    nexProxy.SaveLoginInfo("ocn.stoneagewm.com", 44444, session.getIGGId(), session.getAccesskey(), "");
                 }
                 else
                 {

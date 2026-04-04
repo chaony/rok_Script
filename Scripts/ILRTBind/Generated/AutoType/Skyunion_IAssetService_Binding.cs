@@ -81,7 +81,7 @@ namespace ILRuntime.Runtime.Generated
             {
                 foreach(var m in lst)
                 {
-                    if(m.MatchGenericParameters(args, typeof(Skyunion.IAsset), typeof(System.String), typeof(System.Action<Skyunion.IAsset>)))
+                    if(m.MatchGenericParameters(args, typeof(Skyunion.IAsset), typeof(System.String), typeof(System.Action<Skyunion.IAsset>), typeof(UnityEngine.Object)))
                     {
                         method = m.MakeGenericMethod(args);
                         app.RegisterCLRMethodRedirection(method, LoadAssetAsync_6);
@@ -90,7 +90,7 @@ namespace ILRuntime.Runtime.Generated
                     }
                 }
             }
-            args = new Type[]{typeof(UnityEngine.Sprite)};
+            args = new Type[]{typeof(UnityEngine.Material)};
             if (genericMethods.TryGetValue("LoadAssetAsync", out lst))
             {
                 foreach(var m in lst)
@@ -104,40 +104,12 @@ namespace ILRuntime.Runtime.Generated
                     }
                 }
             }
-            args = new Type[]{typeof(UnityEngine.Material)};
-            if (genericMethods.TryGetValue("LoadAssetAsync", out lst))
-            {
-                foreach(var m in lst)
-                {
-                    if(m.MatchGenericParameters(args, typeof(Skyunion.IAsset), typeof(System.String), typeof(System.Action<Skyunion.IAsset>)))
-                    {
-                        method = m.MakeGenericMethod(args);
-                        app.RegisterCLRMethodRedirection(method, LoadAssetAsync_8);
-
-                        break;
-                    }
-                }
-            }
-            args = new Type[]{typeof(UnityEngine.Material)};
-            if (genericMethods.TryGetValue("LoadAssetAsync", out lst))
-            {
-                foreach(var m in lst)
-                {
-                    if(m.MatchGenericParameters(args, typeof(Skyunion.IAsset), typeof(System.String), typeof(System.Action<Skyunion.IAsset>), typeof(UnityEngine.Object)))
-                    {
-                        method = m.MakeGenericMethod(args);
-                        app.RegisterCLRMethodRedirection(method, LoadAssetAsync_9);
-
-                        break;
-                    }
-                }
-            }
             args = new Type[]{};
             method = type.GetMethod("UnloadUnusedAssets", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, UnloadUnusedAssets_10);
+            app.RegisterCLRMethodRedirection(method, UnloadUnusedAssets_8);
             args = new Type[]{typeof(System.String), typeof(System.Action<UnityEngine.GameObject>)};
             method = type.GetMethod("InstantiateOnePerFrame", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, InstantiateOnePerFrame_11);
+            app.RegisterCLRMethodRedirection(method, InstantiateOnePerFrame_9);
 
 
         }
@@ -280,21 +252,25 @@ namespace ILRuntime.Runtime.Generated
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 3);
+            StackObject* __ret = ILIntepreter.Minus(__esp, 4);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Action<Skyunion.IAsset> @completed = (System.Action<Skyunion.IAsset>)typeof(System.Action<Skyunion.IAsset>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            UnityEngine.Object @autoDestroyOwner = (UnityEngine.Object)typeof(UnityEngine.Object).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
             __intp.Free(ptr_of_this_method);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            System.String @assetName = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            System.Action<Skyunion.IAsset> @completed = (System.Action<Skyunion.IAsset>)typeof(System.Action<Skyunion.IAsset>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
             __intp.Free(ptr_of_this_method);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 3);
+            System.String @assetName = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            __intp.Free(ptr_of_this_method);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 4);
             Skyunion.IAssetService instance_of_this_method = (Skyunion.IAssetService)typeof(Skyunion.IAssetService).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
             __intp.Free(ptr_of_this_method);
 
-            var result_of_this_method = instance_of_this_method.LoadAssetAsync<UnityEngine.Sprite>(@assetName, @completed);
+            var result_of_this_method = instance_of_this_method.LoadAssetAsync<UnityEngine.Sprite>(@assetName, @completed, @autoDestroyOwner);
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
@@ -321,62 +297,12 @@ namespace ILRuntime.Runtime.Generated
             Skyunion.IAssetService instance_of_this_method = (Skyunion.IAssetService)typeof(Skyunion.IAssetService).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
             __intp.Free(ptr_of_this_method);
 
-            var result_of_this_method = instance_of_this_method.LoadAssetAsync<UnityEngine.Sprite>(@assetName, @completed, @autoDestroyOwner);
-
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
-        }
-
-        static StackObject* LoadAssetAsync_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 3);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Action<Skyunion.IAsset> @completed = (System.Action<Skyunion.IAsset>)typeof(System.Action<Skyunion.IAsset>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            System.String @assetName = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 3);
-            Skyunion.IAssetService instance_of_this_method = (Skyunion.IAssetService)typeof(Skyunion.IAssetService).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            var result_of_this_method = instance_of_this_method.LoadAssetAsync<UnityEngine.Material>(@assetName, @completed);
-
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
-        }
-
-        static StackObject* LoadAssetAsync_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 4);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            UnityEngine.Object @autoDestroyOwner = (UnityEngine.Object)typeof(UnityEngine.Object).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            System.Action<Skyunion.IAsset> @completed = (System.Action<Skyunion.IAsset>)typeof(System.Action<Skyunion.IAsset>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 3);
-            System.String @assetName = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 4);
-            Skyunion.IAssetService instance_of_this_method = (Skyunion.IAssetService)typeof(Skyunion.IAssetService).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
             var result_of_this_method = instance_of_this_method.LoadAssetAsync<UnityEngine.Material>(@assetName, @completed, @autoDestroyOwner);
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* UnloadUnusedAssets_10(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* UnloadUnusedAssets_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -391,7 +317,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* InstantiateOnePerFrame_11(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* InstantiateOnePerFrame_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;

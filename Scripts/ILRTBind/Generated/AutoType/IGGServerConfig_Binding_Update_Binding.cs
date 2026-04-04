@@ -35,8 +35,8 @@ namespace ILRuntime.Runtime.Generated
             method = type.GetMethod("get_serverId", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, get_serverId_3);
             args = new Type[]{};
-            method = type.GetMethod("get_googleUrl", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_googleUrl_4);
+            method = type.GetMethod("get_appleUrl", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, get_appleUrl_4);
 
 
         }
@@ -102,7 +102,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* get_googleUrl_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_appleUrl_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -112,7 +112,7 @@ namespace ILRuntime.Runtime.Generated
             global::IGGServerConfig.Update instance_of_this_method = (global::IGGServerConfig.Update)typeof(global::IGGServerConfig.Update).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
             __intp.Free(ptr_of_this_method);
 
-            var result_of_this_method = instance_of_this_method.googleUrl;
+            var result_of_this_method = instance_of_this_method.appleUrl;
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }

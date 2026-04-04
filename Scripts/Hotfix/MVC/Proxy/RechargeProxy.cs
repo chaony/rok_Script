@@ -9,14 +9,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
 using Data;
 using IGGSDKConstant;
 using Skyunion;
 using SprotoType;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace Game {
     public class RechargeProxy : GameProxy {
@@ -535,172 +532,97 @@ namespace Game {
             return strPrice;
         }
 
-        class BuyInfo
-        {
-            public string account;
-            public string serverName;
-            public string time;
-            public string pcid;
-            public string price;
-            public string rid;
-        }
-
-        long lastBuyTime = 0;
         public void CallSdkBuyByPcid(PriceDefine priceDefine, string pcid, string price, IGGPaymentPayload payload = null)
         {
-
-            string key = PlayerProxy.signKey;
-
-            long curTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            if (curTime - lastBuyTime < 1000)
-            {
-                Tip.CreateTip("操作频繁，请等待");
-                return;
-            }
-            lastBuyTime = curTime;
             //发起购买
             Debug.Log("发起购买" + pcid);
 
-            MD5 md5Hash = MD5.Create();
-            PlayerProxy playerProxy = AppFacade.GetInstance().RetrieveProxy(PlayerProxy.ProxyNAME) as PlayerProxy;
+            var isBuyItemWork = IGGPayment.shareInstance().buyItem(pcid, (IGGException ex, bool bIsUserCancle) =>
+           {
+               if (ex.isNone())
+               {
+                   if (bIsUserCancle)
+                   {
+                       Debug.Log("发起购买-用户取消");
+                       return;
+                   }
+                   int tempPcid = 0;
 
-            BuyInfo buyInfo = new BuyInfo();
-            WWWForm form = new WWWForm();
-            buyInfo.account = IGGSDKConstant.IGGDefault.IGGID;
-            form.AddField("account", buyInfo.account);
-
-            buyInfo.time = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
-            form.AddField("time", buyInfo.time);
-
-            buyInfo.pcid = pcid;
-            form.AddField("pcid", buyInfo.pcid);
-
-            buyInfo.price = (priceDefine.price + 0.01f).ToString();
-            form.AddField("price", buyInfo.price);
-
-            buyInfo.serverName = PlayerProxy.curServerImformation.sid;
-            form.AddField("servername", buyInfo.serverName);
-
-            buyInfo.rid = playerProxy.CurrentRoleInfo.rid.ToString();
-            form.AddField("rid", buyInfo.rid);
-
-            string hasher = $"{buyInfo.time}:{buyInfo.pcid}:{key}:{buyInfo.price}:{buyInfo.account}:{key}:{buyInfo.rid}:{buyInfo.serverName}";
-            byte[] result = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(hasher));
-            string resultMD5 = BitConverter.ToString(result).Replace("-", "").ToLower();
-            form.AddField("sign", resultMD5);
-
-            UnityWebRequest request = new UnityWebRequest($"http://{PlayerProxy.curServerImformation.host}:88/api/pay.php", UnityWebRequest.kHttpVerbPOST);
-
-            request.uploadHandler = new UploadHandlerRaw(form.data);
-            request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            var sendRequest = request.SendWebRequest();
-            sendRequest.completed += (op) =>
+                   string curency = "USD";
+                   var gameitem = IGGPayment.shareInstance().GetGameItem(pcid);
+                   if (gameitem != null)
+                   {
+                       price = gameitem.getShopPrice();
+                       curency = gameitem.getShopCurrencyCode();
+                   }
+                   AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases, $"{curency}|{price}"));
+                   AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.PurchasesID, pcid));
+                   if (int.TryParse(pcid, out tempPcid))
+                   {
+                       Debug.Log("发起购买-成功" + tempPcid);
+                       Tip.CreateTip(priceDefine.l_succeededID).Show();
+                       if (m_gemMalls.ContainsKey(tempPcid))
+                       {
+                           RechargeGemMallDefine rechargeGemMallDefine = CoreUtils.dataService.QueryRecord<RechargeGemMallDefine>(m_gemMalls[tempPcid]);
+                           if (rechargeGemMallDefine != null)
+                           {
+                               AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.earn_virtual_currency, rechargeGemMallDefine.denarNum.ToString()));
+                           }
+                       }
+                        if (m_purchases099s.Contains(tempPcid))
+                       {
+                           AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases099));
+                       }
+                       else if (m_purchases499s.Contains(tempPcid))
+                       {
+                           AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases499));
+                       }
+                       else if (m_purchases999s.Contains(tempPcid))
+                       {
+                           AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases999));
+                       }
+                       else if (m_purchases1999s.Contains(tempPcid))
+                       {
+                           AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases1999));
+                       }
+                       else if (m_purchases4999s.Contains(tempPcid))
+                       {
+                           AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases4999));
+                       }
+                       else if (m_purchases9999s.Contains(tempPcid))
+                       {
+                           AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases9999));
+                       }
+                   }
+               }
+               else
+               {
+                   if (bIsUserCancle)
+                   {
+                       Debug.Log("发起购买-用户取消");
+                       return;
+                   }
+                   Debug.Log(ex.ToString());
+                   Tip.CreateTip(300292).Show();
+               }
+           },payload);
+            if (!isBuyItemWork)
             {
-                if (!request.isNetworkError && !request.isHttpError)
+                int limitType = (int)IGGPayment.shareInstance().getPurchaseLimit();
+                if (limitType != (int)IGGPaymentPurchaseLimitation.IGGPaymentPurchaseLimitationNone)
                 {
-                    Debug.Log(request.responseCode);
-                    Debug.Log(request.downloadHandler.text);
-                    switch (request.downloadHandler.text)
-                    {
-                        case "OK":
-                            var isBuyItemWork = IGGPayment.shareInstance().buyItem(pcid, (IGGException ex, bool bIsUserCancle) =>
-                            {
-                                if (ex.isNone())
-                                {
-                                    if (bIsUserCancle)
-                                    {
-                                        Debug.Log("发起购买-用户取消");
-                                        return;
-                                    }
-                                    int tempPcid = 0;
-
-                                    string curency = "USD";
-                                    var gameitem = IGGPayment.shareInstance().GetGameItem(pcid);
-                                    if (gameitem != null)
-                                    {
-                                        price = gameitem.getShopPrice();
-                                        curency = gameitem.getShopCurrencyCode();
-                                    }
-                                    AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases, $"{curency}|{price}"));
-                                    AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.PurchasesID, pcid));
-                                    if (int.TryParse(pcid, out tempPcid))
-                                    {
-                                        Debug.Log("发起购买-成功" + tempPcid);
-                                        Tip.CreateTip(priceDefine.l_succeededID).Show();
-                                        if (m_gemMalls.ContainsKey(tempPcid))
-                                        {
-                                            RechargeGemMallDefine rechargeGemMallDefine = CoreUtils.dataService.QueryRecord<RechargeGemMallDefine>(m_gemMalls[tempPcid]);
-                                            if (rechargeGemMallDefine != null)
-                                            {
-                                                AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.earn_virtual_currency, rechargeGemMallDefine.denarNum.ToString()));
-                                            }
-                                        }
-                                        if (m_purchases099s.Contains(tempPcid))
-                                        {
-                                            AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases099));
-                                        }
-                                        else if (m_purchases499s.Contains(tempPcid))
-                                        {
-                                            AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases499));
-                                        }
-                                        else if (m_purchases999s.Contains(tempPcid))
-                                        {
-                                            AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases999));
-                                        }
-                                        else if (m_purchases1999s.Contains(tempPcid))
-                                        {
-                                            AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases1999));
-                                        }
-                                        else if (m_purchases4999s.Contains(tempPcid))
-                                        {
-                                            AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases4999));
-                                        }
-                                        else if (m_purchases9999s.Contains(tempPcid))
-                                        {
-                                            AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.Purchases9999));
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (bIsUserCancle)
-                                    {
-                                        Debug.Log("发起购买-用户取消");
-                                        return;
-                                    }
-                                    Debug.Log(ex.ToString());
-                                    Tip.CreateTip(300292).Show();
-                                }
-                            }, payload);
-                            if (!isBuyItemWork)
-                            {
-                                int limitType = (int)IGGPayment.shareInstance().getPurchaseLimit();
-                                if (limitType != (int)IGGPaymentPurchaseLimitation.IGGPaymentPurchaseLimitationNone)
-                                {
-                                    Tip.CreateTip(300246).Show();
-                                }
-                                else
-                                {
-                                    Debug.Log("发起购买-SDK未工作");
-                                    Tip.CreateTip(300292).Show();
-                                }
-                            }
-                            else
-                            {
-                                AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.initiated_checkout));
-                            }
-                            break;
-                        default:
-                            Tip.CreateTip(request.downloadHandler.text).Show();
-                            break;
-                    }
+                    Tip.CreateTip(300246).Show();
                 }
                 else
                 {
-                    Tip.CreateTip($"无法更新服务器列表，请检查网络和服务器状态。错误代码{request.responseCode}").Show();
+                    Debug.Log("发起购买-SDK未工作");
+                    Tip.CreateTip(300292).Show();
                 }
-            };
+            }
+            else
+            {
+                AppFacade.GetInstance().SendNotification(CmdConstant.EventTracking, new EventTrackingData(EnumEventTracking.initiated_checkout));
+            }
         }
         /**
          * 获得当前成长之路的配置

@@ -31,12 +31,9 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.Byte[])};
             method = type.GetMethod("GetString", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, GetString_2);
-            args = new Type[]{};
-            method = type.GetMethod("get_UTF8", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_UTF8_3);
             args = new Type[]{typeof(System.String)};
             method = type.GetMethod("GetByteCount", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetByteCount_4);
+            app.RegisterCLRMethodRedirection(method, GetByteCount_3);
 
 
         }
@@ -91,18 +88,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* get_UTF8_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 0);
-
-
-            var result_of_this_method = System.Text.Encoding.UTF8;
-
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
-        }
-
-        static StackObject* GetByteCount_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* GetByteCount_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;

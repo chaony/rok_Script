@@ -128,7 +128,6 @@ namespace Game {
                     break;
                 case CmdConstant.AuthEvent:
                     ELoginState state = (ELoginState) notification.Body;
-                    Debug.LogFormat("HandleNotification AuthEvent [{0}]",state);
                     switch (state)
                     {
                         case ELoginState.EAuthError:
@@ -298,13 +297,15 @@ namespace Game {
             CoreUtils.logService.Info(m_netProxy.GetLoginState()+"游戏层接收到网络状态改变处理" + @event+"  errorCode:"+errStr+"  "+Application.internetReachability);
             
             int errorCode = int.Parse(errStr);
+            
             switch (@event)
             {
-                
                 case NetEvent.ConnectFail:
                     switch (@m_netProxy.GetLoginState() )
                     {
                         case ELoginState.EAuth1:
+                            Debug.Log("无法连接账号服务器EAuth1");
+
                             if (NetworkReachability.NotReachable == Application.internetReachability)
                             {
                                 //本地没有网络  100028 网路不通畅，请尝试重新连接，错误码

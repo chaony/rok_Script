@@ -15,8 +15,11 @@ public class ExportSprite
             {
                 string loadPath = AssetDatabase.GetAssetPath(obj);
                 string ext = System.IO.Path.GetExtension(loadPath);
-                Sprite s = AssetDatabase.LoadAssetAtPath<Sprite>(loadPath);
-                    Object[] sprites = AssetDatabase.LoadAllAssetsAtPath(loadPath);
+                string[] allFiles = Directory.GetFiles(loadPath);
+                // 加载此文件下的所有资源
+                foreach (var item in allFiles)
+                {
+                    Object[] sprites = AssetDatabase.LoadAllAssetsAtPath(item);
                     if (sprites.Length > 0)
                     {
                         string tmpOutPath = outPath + "/" + obj.name;
@@ -49,6 +52,9 @@ public class ExportSprite
                         Debug.Log(string.Format("Export {0} to {1}", loadPath, outPath));
                     }
                 }
+
+
+            }
         }
         finally
         {

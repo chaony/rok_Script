@@ -122,7 +122,7 @@ namespace Game
                 m_worldMapObjectList.Remove(old);
                 return;
             }
-            if (old.objectType == 3)
+            if (old.objectType == 3)//城市
             {
                 if (old.objectPos == null)
                 {

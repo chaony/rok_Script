@@ -31,9 +31,12 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.String)};
             method = type.GetMethod("IsMatch", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, IsMatch_2);
+            args = new Type[]{typeof(System.String), typeof(System.String), typeof(System.String)};
+            method = type.GetMethod("Replace", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, Replace_3);
             args = new Type[]{typeof(System.String), typeof(System.String)};
             method = type.GetMethod("IsMatch", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, IsMatch_3);
+            app.RegisterCLRMethodRedirection(method, IsMatch_4);
 
             args = new Type[]{typeof(System.String)};
             method = type.GetConstructor(flag, null, args, null);
@@ -102,7 +105,31 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* IsMatch_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* Replace_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 3);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.String @replacement = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            __intp.Free(ptr_of_this_method);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            System.String @pattern = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            __intp.Free(ptr_of_this_method);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 3);
+            System.String @input = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
+            __intp.Free(ptr_of_this_method);
+
+
+            var result_of_this_method = System.Text.RegularExpressions.Regex.Replace(@input, @pattern, @replacement);
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+        }
+
+        static StackObject* IsMatch_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;

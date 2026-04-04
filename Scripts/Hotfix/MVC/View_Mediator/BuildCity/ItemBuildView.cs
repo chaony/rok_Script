@@ -25,6 +25,12 @@ namespace Game {
 
 		[HideInInspector] public PolygonImage m_img_bgLight_PolygonImage;
 
+		[HideInInspector] public PolygonImage m_img_Light_PolygonImage;
+
+		[HideInInspector] public PolygonImage m_img_bgDark_PolygonImage;
+
+		[HideInInspector] public PolygonImage m_img_dark_PolygonImage;
+
 		[HideInInspector] public LanguageText m_lbl_name_LanguageText;
 
 		[HideInInspector] public LanguageText m_lbl_desc_LanguageText;
@@ -55,6 +61,12 @@ namespace Game {
 			m_pl_rect_Animator = FindUI<Animator>(vb.transform ,"pl_rect");
 
 			m_img_bgLight_PolygonImage = FindUI<PolygonImage>(vb.transform ,"pl_rect/bg/img_bgLight");
+
+			m_img_Light_PolygonImage = FindUI<PolygonImage>(vb.transform ,"pl_rect/bg/img_bgLight/img_Light");
+
+			m_img_bgDark_PolygonImage = FindUI<PolygonImage>(vb.transform ,"pl_rect/bg/img_bgDark");
+
+			m_img_dark_PolygonImage = FindUI<PolygonImage>(vb.transform ,"pl_rect/bg/img_bgDark/img_dark");
 
 			m_lbl_name_LanguageText = FindUI<LanguageText>(vb.transform ,"pl_rect/textIcon/lbl_name");
 

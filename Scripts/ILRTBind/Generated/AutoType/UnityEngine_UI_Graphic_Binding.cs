@@ -32,20 +32,17 @@ namespace ILRuntime.Runtime.Generated
             method = type.GetMethod("get_rectTransform", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, get_rectTransform_2);
             args = new Type[]{};
-            method = type.GetMethod("SetNativeSize", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, SetNativeSize_3);
-            args = new Type[]{};
             method = type.GetMethod("get_defaultMaterial", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_defaultMaterial_4);
+            app.RegisterCLRMethodRedirection(method, get_defaultMaterial_3);
             args = new Type[]{typeof(UnityEngine.Material)};
             method = type.GetMethod("set_material", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, set_material_5);
+            app.RegisterCLRMethodRedirection(method, set_material_4);
             args = new Type[]{};
             method = type.GetMethod("SetAllDirty", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, SetAllDirty_6);
+            app.RegisterCLRMethodRedirection(method, SetAllDirty_5);
             args = new Type[]{typeof(System.Boolean)};
             method = type.GetMethod("set_raycastTarget", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, set_raycastTarget_7);
+            app.RegisterCLRMethodRedirection(method, set_raycastTarget_6);
 
 
         }
@@ -100,22 +97,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* SetNativeSize_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            UnityEngine.UI.Graphic instance_of_this_method = (UnityEngine.UI.Graphic)typeof(UnityEngine.UI.Graphic).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            instance_of_this_method.SetNativeSize();
-
-            return __ret;
-        }
-
-        static StackObject* get_defaultMaterial_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_defaultMaterial_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -130,7 +112,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* set_material_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* set_material_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -149,7 +131,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* SetAllDirty_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* SetAllDirty_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -164,7 +146,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* set_raycastTarget_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* set_raycastTarget_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;

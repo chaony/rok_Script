@@ -440,39 +440,66 @@ namespace Client
             isDragging = true;
             if (m_Camera != null)
             {
+                // 获取当前触摸点在地形上的位置
                 Vector3 touchTerrainPos = GetTouchTerrainPos(m_Camera, x, y);
+                // 检查触摸点是否有效
                 if (touchTerrainPos.x != INVALID_FLOAT_VALUE && touchTerrainPos.y != INVALID_FLOAT_VALUE && touchTerrainPos.z != INVALID_FLOAT_VALUE)
                 {
+                    // 计算从触摸开始点到当前点的位移向量，并取反向（因为摄像机移动方向与触摸移动方向相反）
                     Vector3 a = -1f * (touchTerrainPos - this.touchStartTerrainPos);
+                    // 将Y轴位移置为0，因为我们只关心水平面上的移动
                     a.y = 0f;
+                    // 计算位移向量的长度
                     float magnitude = a.magnitude;
+                    // 归一化位移向量，得到移动方向
                     Vector3 vector = a / magnitude;
+                    // 标志位，用于控制是否执行移动
                     bool flag = true;
+                    // 获取当前摄像机视图中心点坐标
                     float x2 = this.viewCenter.x;
                     float y2 = this.viewCenter.y;
+                    // 默认允许拖拽出边界
                     this.canDragOut = true;
+                    // 如果没有启用边界反弹功能
                     if (!this.enableReboundXY)
                     {
+                        // 检查当前视图中心是否在允许拖拽出边界的范围内
                         this.canDragOut = this.CheckCanDragout(x2, y2);
                     }
+                    // 如果不允许拖拽出边界
+                    //没启用边界反弹的时候
                     if (!this.canDragOut)
                     {
+                        // 临时标志位
                         bool flag2 = false;
+                        // X轴边界扩展距离
                         float num = 5f;
+                        // Y轴边界扩展距离
                         float num2 = 3f;
-                        if (((double)x2 < this.worldMinX - (double)num && a.x < 0f) || ((double)x2 > this.worldMaxX + (double)num && a.x > 0f))
+                        // 检查X轴是否超出左边界且试图继续向左拖拽
+                        if (((double)x2 < this.worldMinX - (double)num && a.x < 0f) ||
+                            // 或者检查X轴是否超出右边界且试图继续向右拖拽
+                            ((double)x2 > this.worldMaxX + (double)num && a.x > 0f))
                         {
+                            // 禁止X轴移动
                             a.x = 0f;
                             flag2 = true;
                         }
-                        if (((double)y2 < this.worldMinY - (double)num2 && a.z < 0f) || ((double)y2 > this.worldMaxY + (double)num2 && a.z > 0f))
+                        // 检查Y轴是否超出下边界且试图继续向下拖拽
+                        if (((double)y2 < this.worldMinY - (double)num2 && a.z < 0f) ||
+                            // 或者检查Y轴是否超出上边界且试图继续向上拖拽
+                            ((double)y2 > this.worldMaxY + (double)num2 && a.z > 0f))
                         {
+                            // 禁止Z轴移动
                             a.z = 0f;
                             flag2 = true;
                         }
+                        // 如果有任一轴被限制
                         if (flag2)
                         {
+                            // 重新计算位移向量长度
                             float magnitude2 = a.magnitude;
+                            // 如果位移长度大于0.1（说明还有有效移动）
                             if ((double)magnitude2 > 0.1)
                             {
                                 magnitude = a.magnitude;
@@ -480,27 +507,102 @@ namespace Client
                             }
                             else
                             {
+                                // 否则不执行移动
                                 flag = false;
                             }
                         }
                     }
+                    // 如果允许移动
                     if (flag)
                     {
+                        // 如果启用了边界反弹功能
                         if (this.enableReboundXY)
                         {
+                            // 获取当前摄像机缩放级别
                             float currentCameraDxf = this.getCurrentCameraDxf();
+                            // 根据缩放级别计算X轴边界缓冲区大小
                             float offset = this.reboundBaseOffX * currentCameraDxf;
+                            // 根据缩放级别计算Y轴边界缓冲区大小
                             float offset2 = this.reboundBaseOffY * currentCameraDxf;
+                            // 对X轴移动应用缓慢拖拽效果（靠近边界时减速）
                             a.x = this.CalcSlowDrag(a.x, x2, (float)this.worldMinX, (float)this.worldMaxX, offset);
+                            // 对Z轴移动应用缓慢拖拽效果（靠近边界时减速）
                             a.z = this.CalcSlowDrag(a.z, y2, (float)this.worldMinY, (float)this.worldMaxY, offset2);
                         }
+                        // 更新摄像机位置：将视图中心按位移向量移动
                         this.SetCameraPosByViewPos(this.m_Camera, new Vector3(this.viewCenter.x + a.x, 0f, this.viewCenter.y + a.z), true);
+                        // 记录拖拽历史，用于计算惯性滑动
                         Vector2 vector2 = new Vector2((float)((double)(Time.realtimeSinceStartup * 1000f)), a.magnitude);
                         this.dragHistory.Add(vector2);
+                        // 记录拖拽方向
                         this.dragDir = vector;
                     }
                 }
             }
+
+            // if (m_Camera != null)
+            // {
+            //     Vector3 touchTerrainPos = GetTouchTerrainPos(m_Camera, x, y);
+            //     if (touchTerrainPos.x != INVALID_FLOAT_VALUE && touchTerrainPos.y != INVALID_FLOAT_VALUE && touchTerrainPos.z != INVALID_FLOAT_VALUE)
+            //     {
+            //         Vector3 a = -1f * (touchTerrainPos - this.touchStartTerrainPos);
+            //         a.y = 0f;
+            //         float magnitude = a.magnitude;
+            //         Vector3 vector = a / magnitude;
+            //         bool flag = true;
+            //         float x2 = this.viewCenter.x;
+            //         float y2 = this.viewCenter.y;
+            //         this.canDragOut = true;
+            //         if (!this.enableReboundXY)
+            //         {
+            //             this.canDragOut = this.CheckCanDragout(x2, y2);
+            //         }
+            //         if (!this.canDragOut)
+            //         {
+            //             bool flag2 = false;
+            //             float num = 5f;
+            //             float num2 = 3f;
+            //             if (((double)x2 < this.worldMinX - (double)num && a.x < 0f) || ((double)x2 > this.worldMaxX + (double)num && a.x > 0f))
+            //             {
+            //                 a.x = 0f;
+            //                 flag2 = true;
+            //             }
+            //             if (((double)y2 < this.worldMinY - (double)num2 && a.z < 0f) || ((double)y2 > this.worldMaxY + (double)num2 && a.z > 0f))
+            //             {
+            //                 a.z = 0f;
+            //                 flag2 = true;
+            //             }
+            //             if (flag2)
+            //             {
+            //                 float magnitude2 = a.magnitude;
+            //                 if ((double)magnitude2 > 0.1)
+            //                 {
+            //                     magnitude = a.magnitude;
+            //                     vector = a / magnitude;
+            //                 }
+            //                 else
+            //                 {
+            //                     flag = false;
+            //                 }
+            //             }
+            //         }
+            //         if (flag)
+            //         {
+            //             if (this.enableReboundXY)
+            //             {
+            //                 float currentCameraDxf = this.getCurrentCameraDxf();
+            //                 float offset = this.reboundBaseOffX * currentCameraDxf;
+            //                 float offset2 = this.reboundBaseOffY * currentCameraDxf;
+            //                 a.x = this.CalcSlowDrag(a.x, x2, (float)this.worldMinX, (float)this.worldMaxX, offset);
+            //                 a.z = this.CalcSlowDrag(a.z, y2, (float)this.worldMinY, (float)this.worldMaxY, offset2);
+            //             }
+            //             this.SetCameraPosByViewPos(this.m_Camera, new Vector3(this.viewCenter.x + a.x, 0f, this.viewCenter.y + a.z), true);
+            //             Vector2 vector2 = new Vector2((float)((double)(Time.realtimeSinceStartup * 1000f)), a.magnitude);
+            //             this.dragHistory.Add(vector2);
+            //             this.dragDir = vector;
+            //         }
+            //     }
+            // }
             this.lastTouchX = (int)x;
             this.lastTouchY = (int)y;
             this.lastTouchTime = (int)((double)(Time.realtimeSinceStartup * 1000f));
@@ -543,6 +645,7 @@ namespace Client
             {
                 return;
             }
+            //判断是拖拽还是点击
             Vector3 touchTerrainPos2 = new Vector3(INVALID_FLOAT_VALUE, INVALID_FLOAT_VALUE, INVALID_FLOAT_VALUE);
             if (!this.isDragging && Mathf.Abs(x - (float)this.touchStartX) < 10f && Mathf.Abs(y - (float)this.touchStartY) < 10f && !CoreUtils.inputManager.IsTouchedUI())
             {
@@ -551,6 +654,7 @@ namespace Client
             this.isTouching = false;
             this.isDragging = false;
             float num = (float)((double)(Time.realtimeSinceStartup * 1000f));
+            //移除100毫秒以前的拖拽历史记录，只保留最近的拖拽数据
             while (this.dragHistory.Count > 0)
             {
                 if (((Vector2)this.dragHistory[0]).x >= num - 100f)
@@ -559,6 +663,12 @@ namespace Client
                 }
                 this.dragHistory.RemoveAt(0);
             }
+            // 计算最近拖拽历史的总移动距离(num2)和时间跨度(num3)
+            // 得出平均速度(num4)
+            // 如果速度大于0，则设置惯性滑动参数：
+            // dragInertial: 拖拽惯性向量
+            // releaseSpeed: 释放时的速度
+            // releaseTimeStamp: 释放时间戳
             if (this.dragHistory.Count > 0)
             {
                 float num2 = 0f;
@@ -671,8 +781,11 @@ namespace Client
                 this.reboundInertial = Vector3.zero;
             }
             float currentCameraDxf = this.getCurrentCameraDxf();
+            //定义下面的俩数是为了提供平滑的边界反馈，而不是突然的硬性阻止，改善用户体验
             float num = this.getcamraInfo_min_dxf();
             float num2 = this.getcamraInfo_limit_min_dxf();
+            //检查是否设置了自定义最小缩放限制，
+            //并且该自定义限制比系统默认的最小限制更严格（即数值更大，表示更远的视距/更小的缩放级别）。
             if (this.customMinDxf > 0f && this.customMinDxf > num)
             {
                 num = this.customMinDxf * (num / num2);
@@ -682,17 +795,37 @@ namespace Client
                 }
                 num2 = this.customMinDxf;
             }
+            // 下面的if块代码的作用是：
+            // 当接近最小缩放限制时，减缓缩小速度
+            //     防止突然达到缩放边界造成的视觉跳跃
+            // 提供更自然的缩放手感
+            //     这是游戏开发中常见的缩放平滑处理技术，提升用户体验。
+            //缩放平滑处理技术
+            //平滑阻尼效果
             if (currentCameraDxf < num && scrollRate < 1f)
             {
                 float num3 = 1f;
                 if (this.zoomStartDxf > (double)currentCameraDxf)
                 {
+
+
                     num3 = currentCameraDxf / (float)this.zoomStartDxf;
                 }
+                // num2: 缩放的硬限制最小值(getcamraInfo_limit_min_dxf())
+                // num: 缩放的软限制最小值(getcamraInfo_min_dxf())
+                // 当接近硬限制时，num4 接近 0
+                // 当接近软限制时，num4 接近 1
+                // 在限制范围外时，num4 为 0
                 float num4 = Mathf.Max(0f, currentCameraDxf - num2) / (num - num2);
                 num4 = Mathf.Pow(num4, 2f);
+
+                //当num4趋近于0时候，下面的等式的结果就是num3啊
+                //也就是下面在和scrollRate相乘的就是保持当前的
+                //currentCameraDxf不变化
                 scrollRate += (1f - num4) * (num3 - scrollRate);
             }
+            //num3应该理解为之前已经发生过的缩放率,就是之前的scrollRate,这个scrollRate是施加阻尼后的,
+            //根据就是下面这句代码
             float dxf = (float)this.zoomStartDxf * scrollRate;
             float fieldOfView = 0f;
             float num5 = 0f;
@@ -712,7 +845,10 @@ namespace Client
             {
                 return;
             }
+            //下面这段代码的作用是：
+            //在用户进行缩放操作时，保持缩放中心点在屏幕上的位置不变。
             Vector3 vector = touchTerrainPos2 - touchTerrainPos;
+            //通过反向补偿偏移量，使缩放中心点保持在原来的位置
             float num8 = this.viewCenter.x - vector.x;
             float num9 = this.viewCenter.y - vector.z;
             num8 = Mathf.Clamp(num8, (float)this.worldMinX, (float)this.worldMaxX);
@@ -960,7 +1096,17 @@ namespace Client
                 float magnitude = a.magnitude;
                 Vector2 a2 = a / magnitude;
                 float num2 = (num - (float)this.viewTerrainStartTime) / (float)(this.viewTerrainEndTime - this.viewTerrainStartTime);
-                if (this.ViewTerrainPos_curve == null)
+               //缓动easing,避免使用机械线性变化，缓动函数让用户更加体验更加流畅自然
+               // 前70%时间：二次缓入
+               // if (t < 0.7) {
+               //     f(t) = (t/0.7)² × 0.7
+               // }
+               // 后30%时间：平方根缓出
+               // else {
+               //     f(t) = √((t-0.7)/0.3) × 0.3 + 0.7
+               // }
+
+               if (this.ViewTerrainPos_curve == null)
                 {
                     float num3 = 0.7f;
                     float num4 = 1f - num3;
@@ -1262,6 +1408,7 @@ namespace Client
             {
                 this.SetCameraPosByViewPos(camera, new Vector3(this.viewCenter.x + vector.x, 0f, this.viewCenter.y + vector.z), true);
             }
+            //惯性滑动的边界处理
             if (vector2.x != INVALID_FLOAT_VALUE || vector2.y != INVALID_FLOAT_VALUE || vector2.z != INVALID_FLOAT_VALUE)
             {
                 float x2 = this.viewCenter.x;
@@ -1429,6 +1576,7 @@ namespace Client
             return this.cameraInfo_limit_min.dxf + this.m_additionHeightForMinDxf * (this.cameraInfo_limit_min.dxf / this.cameraInfo_min.dxf);
         }
 
+        //这段代码实现了相机缩放的自动校正功能
         public void UpdateChangeMinCameraDxf(int dt)
         {
             float num = this.getcamraInfo_min_dxf() - this.getCurrentCameraDxf();
@@ -1718,6 +1866,7 @@ namespace Client
             if (viewPos > maxValue && value > 0f)
             {
                 float num = Mathf.Clamp(viewPos - maxValue, 0f, offset);
+                //离边界越远num2趋向1
                 float num2 = num / offset;
                 num2 = 1f - num2;
                 float num3 = Mathf.Pow(num2, this.slowDragPowValue);

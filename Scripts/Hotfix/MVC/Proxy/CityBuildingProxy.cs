@@ -702,7 +702,7 @@ namespace Game {
                 }
             }
 
-            return 0L;
+            return 0l;
         }
         public bool HasType2Buff(long rid)
         {

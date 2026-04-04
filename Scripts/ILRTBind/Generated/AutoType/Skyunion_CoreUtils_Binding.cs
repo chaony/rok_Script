@@ -43,24 +43,27 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.Int32)};
             method = type.GetMethod("SetGraphicLevel", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, SetGraphicLevel_6);
+            args = new Type[]{};
+            method = type.GetMethod("get_adService", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, get_adService_7);
             args = new Type[]{typeof(System.String)};
             method = type.GetMethod("GetFileMd5", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetFileMd5_7);
+            app.RegisterCLRMethodRedirection(method, GetFileMd5_8);
             args = new Type[]{typeof(System.String), typeof(System.String), typeof(System.Action), typeof(System.Action<System.Int64>), typeof(System.Action<System.Int64, System.Int64, System.String>)};
             method = type.GetMethod("unZipFileAsync", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, unZipFileAsync_8);
+            app.RegisterCLRMethodRedirection(method, unZipFileAsync_9);
             args = new Type[]{};
             method = type.GetMethod("RestarGame", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, RestarGame_9);
+            app.RegisterCLRMethodRedirection(method, RestarGame_10);
             args = new Type[]{};
             method = type.GetMethod("get_inputManager", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_inputManager_10);
+            app.RegisterCLRMethodRedirection(method, get_inputManager_11);
             args = new Type[]{};
             method = type.GetMethod("GetGraphicLevel", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetGraphicLevel_11);
+            app.RegisterCLRMethodRedirection(method, GetGraphicLevel_12);
             args = new Type[]{};
             method = type.GetMethod("getScreenScale", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, getScreenScale_12);
+            app.RegisterCLRMethodRedirection(method, getScreenScale_13);
 
 
         }
@@ -147,7 +150,18 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* GetFileMd5_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_adService_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 0);
+
+            return null;
+            // var result_of_this_method = Skyunion.CoreUtils.adService;
+
+            // return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+        }
+
+        static StackObject* GetFileMd5_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -163,7 +177,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* unZipFileAsync_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* unZipFileAsync_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -195,7 +209,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* RestarGame_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* RestarGame_10(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);
@@ -206,7 +220,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* get_inputManager_10(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_inputManager_11(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);
@@ -217,7 +231,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* GetGraphicLevel_11(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* GetGraphicLevel_12(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);
@@ -228,7 +242,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* getScreenScale_12(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* getScreenScale_13(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);

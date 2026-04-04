@@ -1486,7 +1486,7 @@ namespace Game
                     {
                         SetGuideTime();
                     }
-                     
+
                     SetMarchBtnGray(troopNum>0);
                     if (m_OpenPanelData.type != OpenPanelType.Common)
                     {

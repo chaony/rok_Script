@@ -16,9 +16,6 @@ namespace ILRuntime.Runtime.Generated
         /// </summary>
         public static void Initialize(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
-            Skyunion_UIViewInfo_Binding.Register(app);
-            System_Type_Binding.Register(app);
-            Skyunion_UIInfo_Binding.Register(app);
             System_Activator_Binding.Register(app);
             Skyunion_BehaviourBinder_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_ILTypeInstance_Binding.Register(app);
@@ -31,6 +28,9 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_List_1_ILTypeInstance_Binding.Register(app);
             UnityEngine_Object_Binding.Register(app);
             System_Action_1_ILTypeInstance_Binding.Register(app);
+            Skyunion_UIViewInfo_Binding.Register(app);
+            System_Type_Binding.Register(app);
+            Skyunion_UIInfo_Binding.Register(app);
             Sproto_ProtocolBase_Binding.Register(app);
             Sproto_ProtocolFunctionDictionary_Binding.Register(app);
             System_Collections_Generic_List_1_Int64_Binding.Register(app);
@@ -253,9 +253,12 @@ namespace ILRuntime.Runtime.Generated
             IGGInGameReporting_Binding.Register(app);
             IGGInGameReporting_Binding_WebRequestReturn_Binding.Register(app);
             IGGInGameReporting_Binding_WebRequestReturn_Binding_Error_Binding.Register(app);
+            System_Math_Binding.Register(app);
+            System_TimeZone_Binding.Register(app);
+            System_TimeSpan_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_ViewBinder_ILTypeInstance_Binding.Register(app);
             System_NotImplementedException_Binding.Register(app);
-            System_Math_Binding.Register(app);
+            Skyunion_IADService_Binding.Register(app);
             Client_WarFogMgr_Binding.Register(app);
             Skyunion_MonoSingleton_1_HUDManager_Binding.Register(app);
             IGGSDK_Binding.Register(app);
@@ -279,6 +282,7 @@ namespace ILRuntime.Runtime.Generated
             IGGPushNotification_Binding.Register(app);
             IGGServerConfig_Binding.Register(app);
             System_Collections_Generic_List_1_IGGServerConfig_Binding_LoginServerItem_Binding.Register(app);
+            IGGServerConfig_Binding_LoginServerItem_Binding.Register(app);
             IGGLogin_Binding_CheckStateReturn_Binding.Register(app);
             IGGURLBundle_Binding.Register(app);
             Skyunion_VersionUtil_Binding.Register(app);
@@ -483,19 +487,9 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_List_1_Dictionary_2_Int64_ILTypeInstance_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int64_Dictionary_2_Int64_ILTypeInstance_Binding_Enumerator_Binding.Register(app);
             System_Collections_Generic_KeyValuePair_2_Int64_Dictionary_2_Int64_ILTypeInstance_Binding.Register(app);
-            System_TimeZone_Binding.Register(app);
-            System_TimeSpan_Binding.Register(app);
             System_Collections_Generic_List_1_IGGGameItem_Binding.Register(app);
             System_Collections_Generic_List_1_IGGGameItem_Binding_Enumerator_Binding.Register(app);
             IGGGameItem_Binding.Register(app);
-            System_DateTimeOffset_Binding.Register(app);
-            System_Security_Cryptography_MD5_Binding.Register(app);
-            UnityEngine_WWWForm_Binding.Register(app);
-            System_Security_Cryptography_HashAlgorithm_Binding.Register(app);
-            System_BitConverter_Binding.Register(app);
-            UnityEngine_Networking_UploadHandlerRaw_Binding.Register(app);
-            UnityEngine_Networking_DownloadHandlerBuffer_Binding.Register(app);
-            UnityEngine_Networking_DownloadHandler_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int64_ManorItem_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int64_Color_Binding.Register(app);
             ManorItem_Binding.Register(app);
@@ -528,7 +522,6 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine_UI_ToggleGroup_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int32_List_1_Int64_Binding.Register(app);
             UnityEngine_EventSystems_UIBehaviour_Binding.Register(app);
-            UnityEngine_UI_PolygonImageMask_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int64_Boolean_Binding_Enumerator_Binding.Register(app);
             System_Collections_Generic_KeyValuePair_2_Int64_Boolean_Binding.Register(app);
             System_Action_1_Int64_Binding.Register(app);
@@ -564,13 +557,13 @@ namespace ILRuntime.Runtime.Generated
             IGGAgreement_Binding.Register(app);
             UnityEngine_Events_UnityAction_1_Int32_Binding.Register(app);
             UnityEngine_Events_UnityAction_1_Int64_Binding.Register(app);
-            System_Action_1_Object_Binding.Register(app);
             System_Action_2_ILTypeInstance_ILTypeInstance_Binding.Register(app);
             UnityEngine_Rendering_SortingGroup_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int64_List_1_ILTypeInstance_Binding_Enumerator_Binding.Register(app);
             System_Collections_Generic_KeyValuePair_2_Int64_List_1_ILTypeInstance_Binding.Register(app);
             Client_UIClickListener_Binding.Register(app);
             UnityEngine_Events_UnityAction_2_Int32_Vector2_Binding.Register(app);
+            System_Action_1_Object_Binding.Register(app);
             UnityEngine_Events_UnityAction_1_Boolean_Binding.Register(app);
             UnityEngine_Events_UnityAction_2_ILTypeInstance_Int32_Binding.Register(app);
             UnityEngine_UI_PolygonImage_Binding.Register(app);
@@ -578,8 +571,8 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_Dictionary_2_Int32_GameToggle_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int32_GameToggle_Binding_Enumerator_Binding.Register(app);
             System_Collections_Generic_KeyValuePair_2_Int32_GameToggle_Binding.Register(app);
-            System_Collections_Generic_List_1_Boolean_Binding.Register(app);
             System_Action_2_ILTypeInstance_Int32_Binding.Register(app);
+            System_Collections_Generic_List_1_Boolean_Binding.Register(app);
             Client_PolyLineChart_Binding.Register(app);
             System_Collections_Generic_List_1_FunctionFormula_Binding.Register(app);
             Client_FunctionFormula_Binding.Register(app);
@@ -626,10 +619,9 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_Dictionary_2_String_Int32_Binding_KeyCollection_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_Int32_Binding_KeyCollection_Binding_Enumerator_Binding.Register(app);
             UnityEngine_Matrix4x4_Binding.Register(app);
-            IGGServerConfig_Binding_LoginServerItem_Binding.Register(app);
             UnityEngine_UI_Dropdown_Binding.Register(app);
-            System_Collections_Generic_List_1_UnityEngine_UI_Dropdown_Binding_OptionData_Binding.Register(app);
             UnityEngine_Events_UnityEvent_1_Int32_Binding.Register(app);
+            System_Collections_Generic_List_1_UnityEngine_UI_Dropdown_Binding_OptionData_Binding.Register(app);
             UnityEngine_UI_Dropdown_Binding_OptionData_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_Single_Binding.Register(app);
             System_Collections_Generic_List_1_IGGTranslationSource_Binding.Register(app);

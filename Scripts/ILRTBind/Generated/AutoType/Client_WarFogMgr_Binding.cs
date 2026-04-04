@@ -29,54 +29,51 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.Int32), typeof(System.Int32), typeof(System.Int32)};
             method = type.GetMethod("CreateFadeGroup", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, CreateFadeGroup_1);
-            args = new Type[]{typeof(System.Int32), typeof(System.Int64[]), typeof(UnityEngine.Transform)};
-            method = type.GetMethod("InitFogSystem", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, InitFogSystem_2);
             args = new Type[]{typeof(System.Int32), typeof(System.Int32), typeof(System.Boolean)};
             method = type.GetMethod("HasFogAt", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, HasFogAt_3);
+            app.RegisterCLRMethodRedirection(method, HasFogAt_2);
             args = new Type[]{typeof(System.Int32), typeof(System.Int32)};
             method = type.GetMethod("OpenFog", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, OpenFog_4);
+            app.RegisterCLRMethodRedirection(method, OpenFog_3);
             args = new Type[]{typeof(UnityEngine.Vector2Int[])};
             method = type.GetMethod("CrateFadeFog", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, CrateFadeFog_5);
+            app.RegisterCLRMethodRedirection(method, CrateFadeFog_4);
             args = new Type[]{typeof(System.Int32), typeof(System.Int32)};
             method = type.GetMethod("CloseFog", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, CloseFog_6);
+            app.RegisterCLRMethodRedirection(method, CloseFog_5);
             args = new Type[]{typeof(System.Int32), typeof(System.Byte[]), typeof(UnityEngine.Transform)};
             method = type.GetMethod("InitFogSystem", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, InitFogSystem_7);
+            app.RegisterCLRMethodRedirection(method, InitFogSystem_6);
             args = new Type[]{typeof(System.Int32), typeof(System.Int32)};
             method = type.GetMethod("GetGroupIdByTile", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetGroupIdByTile_8);
+            app.RegisterCLRMethodRedirection(method, GetGroupIdByTile_7);
             args = new Type[]{typeof(System.Int32), typeof(System.Int32), typeof(System.Boolean)};
             method = type.GetMethod("BuildConnections", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, BuildConnections_9);
+            app.RegisterCLRMethodRedirection(method, BuildConnections_8);
             args = new Type[]{};
             method = type.GetMethod("IsAllFogClear", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, IsAllFogClear_10);
+            app.RegisterCLRMethodRedirection(method, IsAllFogClear_9);
             args = new Type[]{typeof(System.Int32), typeof(System.Int32), typeof(System.Boolean)};
             method = type.GetMethod("CanExploreTile", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, CanExploreTile_11);
+            app.RegisterCLRMethodRedirection(method, CanExploreTile_10);
             args = new Type[]{typeof(System.Int32), typeof(System.Int32), typeof(System.Collections.Generic.Dictionary<System.Int32, System.Boolean>)};
             method = type.GetMethod("FindFogClosestAt", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, FindFogClosestAt_12);
+            app.RegisterCLRMethodRedirection(method, FindFogClosestAt_11);
             args = new Type[]{typeof(System.Int32), typeof(System.Int32)};
             method = type.GetMethod("RemoveTempOpenFog", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, RemoveTempOpenFog_13);
+            app.RegisterCLRMethodRedirection(method, RemoveTempOpenFog_12);
             args = new Type[]{typeof(System.Int32), typeof(System.Int32)};
             method = type.GetMethod("AddTempOpenFog", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, AddTempOpenFog_14);
+            app.RegisterCLRMethodRedirection(method, AddTempOpenFog_13);
             args = new Type[]{typeof(System.Int32)};
             method = type.GetMethod("ChangeLevel", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, ChangeLevel_15);
+            app.RegisterCLRMethodRedirection(method, ChangeLevel_14);
             args = new Type[]{};
             method = type.GetMethod("IsAllFogOpen", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, IsAllFogOpen_16);
+            app.RegisterCLRMethodRedirection(method, IsAllFogOpen_15);
             args = new Type[]{typeof(System.Int32), typeof(System.Single), typeof(System.Int32), typeof(System.Int32)};
             method = type.GetMethod("FindGroupForUseItem", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, FindGroupForUseItem_17);
+            app.RegisterCLRMethodRedirection(method, FindGroupForUseItem_16);
 
             field = type.GetField("GROUP_SIZE", flag);
             app.RegisterCLRFieldGetter(field, get_GROUP_SIZE_0);
@@ -129,30 +126,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* InitFogSystem_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 3);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            UnityEngine.Transform @lowLevelTrans = (UnityEngine.Transform)typeof(UnityEngine.Transform).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            System.Int64[] @unlockedData = (System.Int64[])typeof(System.Int64[]).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack));
-            __intp.Free(ptr_of_this_method);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 3);
-            System.Int32 @mapSize = ptr_of_this_method->Value;
-
-
-            Client.WarFogMgr.InitFogSystem(@mapSize, @unlockedData, @lowLevelTrans);
-
-            return __ret;
-        }
-
-        static StackObject* HasFogAt_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* HasFogAt_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -175,7 +149,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* OpenFog_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* OpenFog_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -193,7 +167,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* CrateFadeFog_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* CrateFadeFog_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -209,7 +183,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* CloseFog_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* CloseFog_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -227,7 +201,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* InitFogSystem_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* InitFogSystem_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -250,7 +224,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* GetGroupIdByTile_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* GetGroupIdByTile_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -270,7 +244,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* BuildConnections_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* BuildConnections_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -291,7 +265,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* IsAllFogClear_10(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* IsAllFogClear_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);
@@ -304,7 +278,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* CanExploreTile_11(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* CanExploreTile_10(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -327,7 +301,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* FindFogClosestAt_12(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* FindFogClosestAt_11(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -354,7 +328,7 @@ namespace ILRuntime.Runtime.Generated
             }
         }
 
-        static StackObject* RemoveTempOpenFog_13(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* RemoveTempOpenFog_12(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -372,7 +346,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* AddTempOpenFog_14(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* AddTempOpenFog_13(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -392,7 +366,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* ChangeLevel_15(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* ChangeLevel_14(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -407,7 +381,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* IsAllFogOpen_16(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* IsAllFogOpen_15(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);
@@ -420,7 +394,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* FindGroupForUseItem_17(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* FindGroupForUseItem_16(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;

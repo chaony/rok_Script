@@ -207,7 +207,7 @@ namespace Client
 
             var lod0_go = aGo.transform.Find("Lod0");
             lod0_go.gameObject.SetActive(true);
-            // Lod1 生成逻辑
+            // Lod1 ???????
             {
                 var preview = aGo.transform.Find("Lod1");
                 if (preview != null)
@@ -218,7 +218,7 @@ namespace Client
 
                 var lod1_go = new GameObject("Lod1");
                 lod1_go.transform.SetParent(aGo.transform);
-                // 1.处理基础地块
+                // 1.???????????
                 var groundTrans = lod0_go.transform.Find("Ground");               
                 if (groundTrans != null)
                 {
@@ -238,7 +238,7 @@ namespace Client
                         }
                     }
                 }
-                // 2.河流
+                // 2.????
                 var riverTrans = lod0_go.transform.Find("River");
                 if (riverTrans != null)
                 {
@@ -257,7 +257,7 @@ namespace Client
                         }
                     }
                 }
-                // 3.湖泊
+                // 3.????
                 var lakeTrans = lod0_go.transform.Find("Lake");
                 if (lakeTrans != null)
                 {
@@ -276,7 +276,7 @@ namespace Client
                         }
                     }
                 }
-                // 4.峡谷
+                // 4.???
                 var canyonTrans = lod0_go.transform.Find("Canyon");
                 if (canyonTrans != null)
                 {
@@ -295,7 +295,7 @@ namespace Client
                         }
                     }
                 }
-                // 5.山脉
+                // 5.???
                 var mountainTrans = lod0_go.transform.Find("Mountain");
                 if (mountainTrans != null)
                 {
@@ -314,7 +314,7 @@ namespace Client
                         }
                     }
                 }
-                // 6. 动态树
+                // 6. ?????
                 var dynamicTree = lod0_go.transform.Find("Dynamic");
                 if (dynamicTree != null)
                 {
@@ -331,7 +331,7 @@ namespace Client
                         grove.transform.localScale = preObj.transform.localScale;
                     }
                 }
-                // 5. 静态树生成
+                // 5. ?????????
                 var staticTree = lod0_go.transform.Find("Static");
                 if (staticTree != null)
                 {
@@ -351,7 +351,7 @@ namespace Client
                 lod1_go.gameObject.SetActive(false);
             }
 
-            // Lod2 生成逻辑
+            // Lod2 ???????
             {
                 var preview = aGo.transform.Find("Lod2");
                 if (preview != null)
@@ -362,7 +362,7 @@ namespace Client
 
                 var lod2_go = new GameObject("Lod2");
                 lod2_go.transform.SetParent(aGo.transform);
-                // 1.处理基础地块
+                // 1.???????????
                 var groundTrans = lod0_go.transform.Find("Ground");
                 if (groundTrans != null)
                 {
@@ -384,7 +384,7 @@ namespace Client
                 }
                 var riverSprites = LoadSprites(landPath + "/Texture_lod3_4/land_form_lod3.png");
                 var riverSpriteMat = AssetDatabase.LoadAssetAtPath<Material>(landPath + "/Material/map_sprite_ground_lod3.mat");
-                // 2.河流
+                // 2.????
                 var riverTrans = lod0_go.transform.Find("River");
                 if (riverTrans != null)
                 {
@@ -411,7 +411,7 @@ namespace Client
                         }
                     }
                 }
-                // 3.湖泊
+                // 3.????
                 var lakeTrans = lod0_go.transform.Find("Lake");
                 if (lakeTrans != null)
                 {
@@ -437,7 +437,7 @@ namespace Client
                         }
                     }
                 }
-                //// 4.峡谷
+                //// 4.???
                 //var canyonTrans = lod0_go.transform.Find("Canyon");
                 //if (canyonTrans != null)
                 //{
@@ -456,7 +456,7 @@ namespace Client
                 //        }
                 //    }
                 //}
-                //// 5.山脉
+                //// 5.???
                 //var mountainTrans = lod0_go.transform.Find("Mountain");
                 //if (mountainTrans != null)
                 //{
@@ -475,7 +475,7 @@ namespace Client
                 //        }
                 //    }
                 //}
-                // 6. 动态树
+                // 6. ?????
                 var treeSprites = LoadSprites(landPath + "/Texture/map_tree_atlas.png");
                 var treeSpriteMat = AssetDatabase.LoadAssetAtPath<Material>(landPath + "/Material/map_high_sprite_nomask.mat");
                 var dynamicTree = lod0_go.transform.Find("Dynamic");
@@ -501,7 +501,7 @@ namespace Client
                         }
                     }
                 }
-                // 5. 静态树生成
+                // 5. ?????????
                 var staticTree = lod0_go.transform.Find("Static");
                 if (staticTree != null)
                 {
@@ -520,7 +520,7 @@ namespace Client
                 PrefabUtility.SaveAsPrefabAssetAndConnect(lod2_go, lod2Path, InteractionMode.AutomatedAction);
                 lod2_go.gameObject.SetActive(false);
             }
-            // Lod3 生成逻辑
+            // Lod3 ???????
             {
                 var preview = aGo.transform.Find("Lod3");
                 if (preview != null)
@@ -531,7 +531,7 @@ namespace Client
 
                 var lod3_go = new GameObject("Lod3");
                 lod3_go.transform.SetParent(aGo.transform);
-                // 1.处理基础地块
+                // 1.???????????
                 var groundTrans = lod0_go.transform.Find("Plane");
                 if (groundTrans != null)
                 {
@@ -546,7 +546,7 @@ namespace Client
                 }
                 var riverSprites = LoadSprites(landPath + "/Texture_lod3_4/land_form_lod3.png");
                 var riverSpriteMat = AssetDatabase.LoadAssetAtPath<Material>(landPath + "/Material/map_sprite_ground_lod3.mat");
-                // 2.河流
+                // 2.????
                 var riverTrans = lod0_go.transform.Find("River");
                 if (riverTrans != null)
                 {
@@ -573,7 +573,7 @@ namespace Client
                         }
                     }
                 }
-                // 3.湖泊
+                // 3.????
                 var lakeTrans = lod0_go.transform.Find("Lake");
                 if (lakeTrans != null)
                 {
@@ -599,7 +599,7 @@ namespace Client
                         }
                     }
                 }
-                // 6. 动态树
+                // 6. ?????
                 var treeSprites = LoadSprites(landPath + "/Texture/map_tree_atlas.png");
                 var treeSpriteMat = AssetDatabase.LoadAssetAtPath<Material>(landPath + "/Material/map_high_sprite_nomask.mat");
                 var dynamicTree = lod0_go.transform.Find("Dynamic");
@@ -630,7 +630,7 @@ namespace Client
                 lod3_go.gameObject.SetActive(false);
             }
 
-            // Lod4 生成逻辑
+            // Lod4 ???????
             {
                 var preview = aGo.transform.Find("Lod4");
                 if (preview != null)
@@ -641,7 +641,7 @@ namespace Client
 
                 var lod4_go = new GameObject("Lod4");
                 lod4_go.transform.SetParent(aGo.transform);
-                // 1.处理基础地块
+                // 1.???????????
                 var groundTrans = lod0_go.transform.Find("Plane");
                 if (groundTrans != null)
                 {
@@ -656,7 +656,7 @@ namespace Client
                 }
                 var riverSprites = LoadSprites(landPath + "/Texture_lod3_4/land_form_lod3.png");
                 var riverSpriteMat = AssetDatabase.LoadAssetAtPath<Material>(landPath + "/Material/map_sprite_ground_lod3.mat");
-                // 2.河流
+                // 2.????
                 var riverTrans = lod0_go.transform.Find("River");
                 if (riverTrans != null)
                 {
@@ -683,7 +683,7 @@ namespace Client
                         }
                     }
                 }
-                // 3.湖泊
+                // 3.????
                 var lakeTrans = lod0_go.transform.Find("Lake");
                 if (lakeTrans != null)
                 {
@@ -709,7 +709,7 @@ namespace Client
                         }
                     }
                 }
-                // 6. 动态树
+                // 6. ?????
                 var treeSprites = LoadSprites(landPath + "/Texture/map_tree_atlas.png");
                 var treeSpriteMat = AssetDatabase.LoadAssetAtPath<Material>(landPath + "/Material/map_high_sprite_nomask.mat");
                 var dynamicTree = lod0_go.transform.Find("Dynamic");
@@ -740,7 +740,7 @@ namespace Client
                 lod4_go.gameObject.SetActive(false);
             }
 
-            // Lod5 生成逻辑
+            // Lod5 ???????
             {
                 var preview = aGo.transform.Find("Lod5");
                 if (preview != null)
@@ -751,7 +751,7 @@ namespace Client
 
                 var lod5_go = new GameObject("Lod5");
                 lod5_go.transform.SetParent(aGo.transform);
-                // 1.处理基础地块
+                // 1.???????????
                 var groundTrans = lod0_go.transform.Find("Plane");
                 if (groundTrans != null)
                 {
@@ -766,7 +766,7 @@ namespace Client
                 }
                 var riverSprites = LoadSprites(landPath + "/Texture_lod3_4/land_form_lod3.png");
                 var riverSpriteMat = AssetDatabase.LoadAssetAtPath<Material>(landPath + "/Material/map_sprite_ground_lod3.mat");
-                // 2.河流
+                // 2.????
                 var riverTrans = lod0_go.transform.Find("River");
                 if (riverTrans != null)
                 {
@@ -793,7 +793,7 @@ namespace Client
                         }
                     }
                 }
-                // 3.湖泊
+                // 3.????
                 var lakeTrans = lod0_go.transform.Find("Lake");
                 if (lakeTrans != null)
                 {
@@ -819,7 +819,7 @@ namespace Client
                         }
                     }
                 }
-                // 6. 动态树
+                // 6. ?????
                 var treeSprites = LoadSprites(landPath + "/Texture/map_tree_atlas.png");
                 var treeSpriteMat = AssetDatabase.LoadAssetAtPath<Material>(landPath + "/Material/map_high_sprite_nomask.mat");
                 var dynamicTree = lod0_go.transform.Find("Dynamic");
@@ -926,7 +926,7 @@ namespace Client
             mesh.RecalculateTangents();
             mesh.RecalculateBounds();
 
-            // 创建Mesh的目录
+            // ????Mesh????
             var meshDir = Path.GetDirectoryName(meshFullPath);
             if (!Directory.Exists(meshDir))
             {
@@ -944,11 +944,11 @@ namespace Client
             AssetDatabase.CreateAsset(mesh, meshPath);
             AssetDatabase.Refresh();
 
-            // 获取树的材质
+            // ??????????
             var helper = aGo.GetComponentInChildren<GizmosTool>();
             Material material = helper.m_treeMaterial;
 
-            // 创建预制件
+            // ????????
             var grovePrefab = new GameObject(Path.GetFileNameWithoutExtension(prefabFullPath));
             grovePrefab.AddComponent<ObjectPoolItem>();
             var andorningObject = new GameObject("adorning");
@@ -982,7 +982,7 @@ namespace Client
             string meshFullPath = Path.Combine(landPath, "Mesh", "AutoMake") + "/" + aGo.name + "_adorning.asset";
             string prefabFullPath = Path.Combine(landPath, "Tile") + "/" + aGo.name + "_adorning.prefab";
             var grovePrefab = CreateGrove(aGo, meshFullPath, prefabFullPath);
-            // 删掉原来的树
+            // ??????????
             adorningTran?.gameObject.SetActive(false);
             while (true)
             {
@@ -996,7 +996,7 @@ namespace Client
             Object.DestroyImmediate(aGo);
         }
 
-        #region "Tile Lod 的生成"
+        #region "Tile Lod ??????"
         [MenuItem("Assets/LodTool/BuildTile(1-5)", true, 0)]
         static bool ValidateBuildTile()
         {
@@ -1012,7 +1012,7 @@ namespace Client
             return false;
         }
         #endregion
-        #region "动态树的生成"
+        #region "???????????"
         [MenuItem("Assets/LodTool/BuildGrove", true, 0)]
         static bool ValidateBuildGrove()
         {

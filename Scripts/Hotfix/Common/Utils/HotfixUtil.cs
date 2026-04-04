@@ -146,7 +146,7 @@ namespace Game
         }
         public static bool IsShowLoginView()
         {
-            return PlayerPrefs.GetInt("LoginView", 0) == 0;
+            return PlayerPrefs.GetInt("LoginView", 0) == 1;
         }
 
         public static void SetShowLoginView(bool bEnable)

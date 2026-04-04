@@ -26,6 +26,7 @@ namespace Client
             toFill.AddUIVertexQuad(GetVertex(pos[3],pos[0]));
         }
 
+        //绘制一条边，这条边是个四边形
         private UIVertex[] GetVertex(Vector2 startPos,Vector2 endPos)
         {
             startPos.x *= this.rectTransform.sizeDelta.x;
@@ -37,6 +38,8 @@ namespace Client
             endPos.y *= this.rectTransform.sizeDelta.y;
             endPos.y -= this.rectTransform.sizeDelta.y / 2;
             float dis = Vector2.Distance(startPos, endPos);
+            float bili_x = (endPos.x - startPos.x) / dis;
+            float bili_y = (endPos.y - startPos.y) / dis;
             float y = lineWidth * 0.5f * (endPos.x - startPos.x) / dis;
             float x = lineWidth * 0.5f * (endPos.y - startPos.y) / dis;
             UIVertex[] vertex = new UIVertex[4];

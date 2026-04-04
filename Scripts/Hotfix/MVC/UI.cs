@@ -65,8 +65,6 @@ public class UI
     #region 全屏模型
     public static UIInfo s_LoginView = new UIInfo("LoginView",typeof(LoginView), s_windowMenu, EnumMaskStatus.kNone);
 
-    public static UIInfo s_LoginServerConfirm = new UIInfo("LoginServerSelect", typeof(LoginServerConfirm), s_windowMenu, EnumMaskStatus.kNone);
-
     public static UIInfo s_InputServerIdView = new UIInfo("InputServerId", typeof(InputServerIdView), s_windowMenu, EnumMaskStatus.kNone);
 
     public static UIInfo s_CreateCharacter = new UIInfo(CreateCharView.VIEW_NAME, typeof(CreateCharView),s_fullWindow,EnumMaskStatus.kNone);
@@ -75,12 +73,10 @@ public class UI
     public static UIInfo s_Loading = new UIInfo("UI_IF_Loading",typeof(LoadingView),s_fullWindow,EnumMaskStatus.kNone);
     
     public static UIInfo s_reConnecting = new UIInfo("UI_Common_Spin",typeof(ReConnectView),s_loading,EnumMaskStatus.kNone,null,0,0,true,false);
-
+    
     #endregion
 
     #region 弹出窗口模型
-    public static UIInfo s_LoginServerSelect = new UIInfo("LoginServerSelect", typeof(LoginServerSelect), s_popWin, EnumMaskStatus.kNone);
-
     public static UIInfo s_gameTool = new UIInfo("UI_Win_GameTool", typeof(GameToolView), s_browserViewInfo, EnumMaskStatus.kNone);
     public static UIInfo s_gameToolViewSetting = new UIInfo("UI_Win_GameToolViewSetting", typeof(UI_Win_GameToolViewSettingView), s_browserViewInfo, EnumMaskStatus.kNone);
     public static UIInfo s_testUIInfo = new UIInfo("TestUI", typeof(TestUIView), s_popWin,EnumMaskStatus.kNone);

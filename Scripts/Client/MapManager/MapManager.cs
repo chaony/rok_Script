@@ -492,14 +492,17 @@ namespace Client
         private List<MapObjectData> GetDataInRange(Rect rect)
         {
             List<MapObjectData> list = new List<MapObjectData>();
+            //0.1
             foreach (TileData current in this.m_current_map_data_adorning.Values)
             {
                 list.AddRange(current.GetMapObjDataInRange(rect));
             }
+            //lod 2.3.4
             foreach (TileData current2 in this.m_current_map_data_tile_detail.Values)
             {
                 list.AddRange(current2.GetMapObjDataInRange(rect));
             }
+            //lod 5
             foreach (TileData current3 in this.m_current_map_data_tile_brief.Values)
             {
                 list.AddRange(current3.GetMapObjDataInRange(rect));
@@ -513,6 +516,7 @@ namespace Client
             {
                 return this.m_current_map_data_tile_detail;
             }
+            //lod 5 this.m_current_map_data_tile_brief才不为空
             return this.m_current_map_data_tile_brief;
         }
 
@@ -593,6 +597,7 @@ namespace Client
         }
 
 
+        //确保相同瓦片内的不同位置都会返回相同的瓦片中心坐标
         private Vector2 GetCenterByPos(Vector2 pos, float tile_width)
         {
             float num = tile_width / 2f;
@@ -612,6 +617,12 @@ namespace Client
             }
         }
 
+        // 根据代码分析，这三个变量对应的地图块尺寸如下：
+        //
+// - [m_current_piece_center]：对应小型地图块，尺寸为 `m_piece_width = 45f`
+// - [m_current_large_piece_center]：对应大型地图块，尺寸为 `m_piece_plane_width = 90f`
+// - [m_current_dynamic_piece_center]：对应动态地图块，尺寸为 `m_tile_width = 180f`
+// 这三种不同尺寸的地图块用于实现分层的地图管理系统，以适应不同的LOD（Level of Detail）需求和渲染性能优化。
         private Vector2 m_current_piece_center = Vector2.zero;
 
         private Vector2 m_current_large_piece_center = Vector2.zero;
@@ -774,6 +785,8 @@ namespace Client
         public void UpdatePiece(Vector2 pos)
         {
             Vector2 centerByPos = GetCenterByPos(pos, this.m_piece_plane_width);
+            //lod 0，1
+            //m_current_map_data_tile_plane
             if (centerByPos != this.m_current_large_piece_center || this.m_force_update_once)
             {
                 int x = (int)(centerByPos.x / this.m_piece_plane_width);
@@ -781,6 +794,9 @@ namespace Client
                 this.DoUpdateLargePiece(x, y, this.m_force_update_once);
                 this.m_current_large_piece_center = centerByPos;
             }
+            //lod 0.1.2.3.4.5，查看的游戏运行时只在lod 0.1时候显示
+            //这里处理的只有grove，从 CreateNewPiece方法里面的mapPiece.Refresh()里面的有个grove限制：if (mapObjectData.m_prefab_id.Contains("Grove"))
+            //lod0.1时候太近时候m_current_map_data_tile_plane和grove分开显示
             Vector2 centerByPos2 = GetCenterByPos(pos, this.m_piece_width);
             if (centerByPos2 != this.m_current_piece_center || this.m_force_update_once)
             {
@@ -789,6 +805,8 @@ namespace Client
                 this.DoUpdatePiece(x2, y2, this.m_force_update_once);
                 this.m_current_piece_center = centerByPos2;
             }
+
+
             int currentLodLevel = LevelDetailCamera.instance.GetCurrentLodLevel();
             float tile_width = m_tile_width;
             Vector2 centerByPos3 = GetCenterByPos(pos, tile_width);
@@ -796,6 +814,7 @@ namespace Client
             {
                 int x3 = (int)(centerByPos3.x / tile_width);
                 int y3 = (int)(centerByPos3.y / tile_width);
+                //只显示lod 2.3.4.5
                 this.DoUpdateDynamicPiece(x3, y3, this.m_force_update_once, currentLodLevel);
                 this.m_current_dynamic_piece_center = centerByPos3;
             }

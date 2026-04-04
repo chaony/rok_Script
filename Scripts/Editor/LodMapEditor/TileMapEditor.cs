@@ -64,14 +64,14 @@ namespace Client
         }
 
         /// <summary>
-        /// 切换锁定
+        /// ????????
         /// </summary>
         private static void SwichLockLayer(int layer)
         {
             Tools.lockedLayers ^= 1 << layer;
         }
         /// <summary>
-        /// 设置锁定
+        /// ????????
         /// </summary>
         private static void LockLayer(int layer)
         {
@@ -80,14 +80,14 @@ namespace Client
         }
 
         /// <summary>
-        /// 取消锁定
+        /// ???????
         /// </summary>
         private static void UnLockLayer(int layer)
         {
             Tools.lockedLayers &= ~(1 << layer);
         }
         /// <summary>
-        /// 判断是否锁定
+        /// ???????????
         /// </summary>
         private static bool IsLayerLocked(int layer)
         {
@@ -163,7 +163,7 @@ namespace Client
                 GameObject.DestroyImmediate(quad);
             }
             GameObject border = FindRootObjec("Border");
-            // 创建物理
+            // ????????
             if (border == null)
             {
                 border = new GameObject();
@@ -277,7 +277,7 @@ namespace Client
         }
         static void ClearMap()
         {
-            if (UnityEditor.EditorUtility.DisplayDialog("危险操作", "是否确认清除地图", "确认", "取消"))
+            if (UnityEditor.EditorUtility.DisplayDialog("???????", "????????????", "???", "???"))
             {
                 while (m_TileMapHelper.transform.childCount > 0)
                 {
@@ -622,7 +622,7 @@ namespace Client
                 XmlDocument document = new XmlDocument();
                 document.Load(tmxPath);
 
-                // 省份信息
+                // ??????
                 var objects = document.DocumentElement.SelectNodes("objectgroup/object");
                 m_provinceNames = new string[objects.Count];
                 m_provinceShow = new int[objects.Count];
@@ -707,7 +707,7 @@ namespace Client
             else
             {
 
-                // 所有的地块
+                // ????????
                 var tileBrief = new TileSimple[m_TileMapHelper.tile_row * m_TileMapHelper.tile_col];
 
                 foreach (var elm in tiles)
@@ -788,7 +788,7 @@ namespace Client
                 List<GameObject> grove = new List<GameObject>();
                 foreach (Transform child in tile.transform)
                 {
-                    // 判断是不是预制件的跟节点，是的话才处理
+                    // ????????????????????????????
                     var preObj = PrefabUtility.GetNearestPrefabInstanceRoot(child);
                     if (preObj == child.gameObject)
                     {
@@ -854,18 +854,18 @@ namespace Client
             //Unity2017 API
             UnityEngine.AI.NavMeshTriangulation navMeshTriangulation = UnityEngine.AI.NavMesh.CalculateTriangulation();
             StreamWriter swWalkable = new StreamWriter(walkablePath);
-            //顶点  
+            //????  
             for (int i = 0; i < navMeshTriangulation.vertices.Length; i++)
             {
                 swWalkable.WriteLine("v  " + -navMeshTriangulation.vertices[i].x + " " + /*navMeshTriangulation.vertices[i].y*/0 + " " + navMeshTriangulation.vertices[i].z);
             }
-            swWalkable.WriteLine("g navmesh");//组名称
-            //索引  
+            swWalkable.WriteLine("g navmesh");//??????
+            //????  
             int nTrig = 0;
             for (int i = 0; i < navMeshTriangulation.indices.Length;)
             {
-                //obj文件中顶点索引是从1开始
-                // 可行走和桥面
+                //obj????????????????1???
+                // ???????????
                 if (navMeshTriangulation.areas[nTrig] == 0 || navMeshTriangulation.areas[nTrig] == 5)
                 {
                     swWalkable.WriteLine("f " + (navMeshTriangulation.indices[i] + 1) + " " + (navMeshTriangulation.indices[i + 2] + 1) + " " + (navMeshTriangulation.indices[i + 1] + 1));
@@ -896,17 +896,17 @@ namespace Client
             //Unity2017 API
             UnityEngine.AI.NavMeshTriangulation navMeshTriangulation = UnityEngine.AI.NavMesh.CalculateTriangulation();
             StreamWriter swNoBuilding = new StreamWriter(noBuildingPath);
-            //顶点  
+            //????  
             for (int i = 0; i < navMeshTriangulation.vertices.Length; i++)
             {
                 swNoBuilding.WriteLine("v  " + -navMeshTriangulation.vertices[i].x + " " + /*navMeshTriangulation.vertices[i].y*/0 + " " + navMeshTriangulation.vertices[i].z);
             }
-            swNoBuilding.WriteLine("g navmesh");//组名称
-            //索引  
+            swNoBuilding.WriteLine("g navmesh");//??????
+            //????  
             int nTrig = 0;
             for (int i = 0; i < navMeshTriangulation.indices.Length;)
             {
-                //obj文件中顶点索引是从1开始
+                //obj????????????????1???
                 if (navMeshTriangulation.areas[nTrig] != 0)
                 {
                     swNoBuilding.WriteLine("f " + (navMeshTriangulation.indices[i] + 1) + " " + (navMeshTriangulation.indices[i + 2] + 1) + " " + (navMeshTriangulation.indices[i + 1] + 1));
@@ -937,17 +937,17 @@ namespace Client
             //Unity2017 API
             UnityEngine.AI.NavMeshTriangulation navMeshTriangulation = UnityEngine.AI.NavMesh.CalculateTriangulation();
             StreamWriter swNoBuilding = new StreamWriter(noBuildingPath);
-            //顶点  
+            //????  
             for (int i = 0; i < navMeshTriangulation.vertices.Length; i++)
             {
                 swNoBuilding.WriteLine("v  " + -navMeshTriangulation.vertices[i].x + " " + /*navMeshTriangulation.vertices[i].y*/0 + " " + navMeshTriangulation.vertices[i].z);
             }
-            swNoBuilding.WriteLine("g navmesh");//组名称
-            //索引  
+            swNoBuilding.WriteLine("g navmesh");//??????
+            //????  
             int nTrig = 0;
             for (int i = 0; i < navMeshTriangulation.indices.Length;)
             {
-                //obj文件中顶点索引是从1开始
+                //obj????????????????1???
                 if (navMeshTriangulation.areas[nTrig] == 0)
                 {
                     swNoBuilding.WriteLine("f " + (navMeshTriangulation.indices[i] + 1) + " " + (navMeshTriangulation.indices[i + 2] + 1) + " " + (navMeshTriangulation.indices[i + 1] + 1));

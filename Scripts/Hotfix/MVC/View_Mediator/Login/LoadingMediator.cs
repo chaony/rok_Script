@@ -131,7 +131,6 @@ namespace Game {
                 case CmdConstant.AuthEvent: // 账号服务器校验EAuth1 EAuth2 EAuth3 ERedirectionGameServer EGameServerOK
                     {
                         ELoginState state = (ELoginState)notification.Body;
-                        Debug.LogFormat("HandleNotification AuthEvent loadingMediator [{0}]",state);
                         switch(state)
                         {
                             case ELoginState.EAuth1:
