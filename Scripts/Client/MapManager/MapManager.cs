@@ -816,6 +816,7 @@ namespace Client
 
             int currentLodLevel = LevelDetailCamera.instance.GetCurrentLodLevel();
             float tile_width = m_tile_width;
+            //这里的计算也是阀值刷新的意思
             Vector2 centerByPos3 = GetCenterByPos(pos, tile_width);
             if (centerByPos3 != this.m_current_dynamic_piece_center || this.m_force_update_once)
             {
