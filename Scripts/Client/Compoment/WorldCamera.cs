@@ -802,6 +802,7 @@ namespace Client
             //     这是游戏开发中常见的缩放平滑处理技术，提升用户体验。
             //缩放平滑处理技术
             //平滑阻尼效果
+            //这里处理的是两指分开的放大操作的阻尼效果
             if (currentCameraDxf < num && scrollRate < 1f)
             {
                 float num3 = 1f;
@@ -816,12 +817,14 @@ namespace Client
                 // 当接近硬限制时，num4 接近 0
                 // 当接近软限制时，num4 接近 1
                 // 在限制范围外时，num4 为 0
+                //此处可以和边界回弹逻辑比较记忆num-num2相当于offset，只要currentCameraDxf小于num,num4就小于1
                 float num4 = Mathf.Max(0f, currentCameraDxf - num2) / (num - num2);
                 num4 = Mathf.Pow(num4, 2f);
 
                 //当num4趋近于0时候，下面的等式的结果就是num3啊
                 //也就是下面在和scrollRate相乘的就是保持当前的
                 //currentCameraDxf不变化
+                //num4==1的时候不会产生阻尼效果，num4==0的时候会产生最大阻尼效果就是不能再动了
                 scrollRate += (1f - num4) * (num3 - scrollRate);
             }
             //num3应该理解为之前已经发生过的缩放率,就是之前的scrollRate,这个scrollRate是施加阻尼后的,
