@@ -797,8 +797,8 @@ namespace Client
             //lod 0.1.2.3.4.5，查看的游戏运行时只在lod 0.1时候显示
             //这里处理的只有grove，因为 CreateNewPiece方法里面的mapPiece.Refresh()里面的有个grove限制：
             // if (mapObjectData.m_prefab_id.Contains("Grove"))
-            // 所以这里处理的只有grove，其他的不处理，lod 2345都不处理
-            //m_current_map_data_tile_detail和m_current_map_data_tile_brief里面都没有grove，
+            // 所以这里处理的只有grove，其他的不处理，lod 2345都不处理，因为m_current_map_data_tile_detail
+            //和m_current_map_data_tile_brief里面都没有grove，
             // 虽然下面代码里涉及到了这俩但是这里不处理他们俩，这里只处理grove
 
             //m_current_map_data_tile_detail和m_current_map_data_tile_brief的加载处理是在DoUpdateDynamicPiece

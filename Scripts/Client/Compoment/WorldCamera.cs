@@ -809,7 +809,8 @@ namespace Client
                 if (this.zoomStartDxf > (double)currentCameraDxf)
                 {
 
-
+                    //num3可以理解为开始操作缩放时候的记录的scrollRate，原因是如下计算
+                    //   currentCameraDxf =float dxf = (float)this.zoomStartDxf * scrollRate;
                     num3 = currentCameraDxf / (float)this.zoomStartDxf;
                 }
                 // num2: 缩放的硬限制最小值(getcamraInfo_limit_min_dxf())
