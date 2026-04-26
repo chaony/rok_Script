@@ -40,6 +40,7 @@ namespace Client
             float dis = Vector2.Distance(startPos, endPos);
             float bili_x = (endPos.x - startPos.x) / dis;
             float bili_y = (endPos.y - startPos.y) / dis;
+            //旋转90度，因为拓展方向（即线段的宽度方向）直于线段方向
             float y = lineWidth * 0.5f * (endPos.x - startPos.x) / dis;
             float x = lineWidth * 0.5f * (endPos.y - startPos.y) / dis;
             UIVertex[] vertex = new UIVertex[4];
