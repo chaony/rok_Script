@@ -780,6 +780,11 @@ namespace Client
                 this.releaseTimeStamp = 0;
                 this.reboundInertial = Vector3.zero;
             }
+            // 用户缩放 → 突然卡住 → 体验很差！
+            // 这就像 iOS 的滚动列表：
+            // 滚到顶部/底部时，不会突然停止
+            //     而是有一个"橡皮筋"效果，逐渐减速
+            //     num 和 num2 之间的区域就是这个"橡皮筋"
             float currentCameraDxf = this.getCurrentCameraDxf();
             //定义下面的俩数是为了提供平滑的边界反馈，而不是突然的硬性阻止，改善用户体验
             float num = this.getcamraInfo_min_dxf();
