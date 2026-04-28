@@ -1348,6 +1348,7 @@ namespace Client
                     if ((double)magnitude2 > 0.0001)
                     {
                         a = this.releaseSpeed / magnitude2;
+                        //指数衰减函数，用于是实现惯性滑动时的速度衰减效果
                         double num3 = (double)Mathf.Exp((float)((double)(-(double)num2) / 0.18));
                         double num4 = (double)magnitude2 * num3;
                         if (num4 > 0.001)
@@ -1591,6 +1592,7 @@ namespace Client
         public void UpdateChangeMinCameraDxf(int dt)
         {
             float num = this.getcamraInfo_min_dxf() - this.getCurrentCameraDxf();
+            //所以 num > 0 表示：摄像机超出了合法范围（太小了）
             if (num > 0f && this.m_addDxfforAdditionHeight_delta > 0f)
             {
                 float num2 = this.getCurrentCameraDxf();
