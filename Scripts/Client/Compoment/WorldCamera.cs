@@ -1254,6 +1254,11 @@ namespace Client
                     num9 = this.customMinDxf;
                 }
                 float num10 = num8 - this.getCurrentCameraDxf();
+                // 最小合法距离 > 当前实际距离
+                //     ↓
+                // 相机离得太近了！超出了合法范围
+                //     ↓
+                // 需要执行回弹动画，将相机推回到安全距离
                 if (num10 > 0f)
                 {
                     //Debug.Log("zoonReboundDist:" + num10);
