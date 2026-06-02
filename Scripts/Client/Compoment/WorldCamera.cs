@@ -1520,6 +1520,7 @@ namespace Client
                 x = this.viewTerrainEndPos.x;
                 y = this.viewTerrainEndPos.y;
             }
+            //这里的isPrefect并没有去修改摄像机的位置，而是传给了回调函数当参数
             else if (isPredict)
             {
                 Vector2 a = new Vector2(pos.x, pos.z);
