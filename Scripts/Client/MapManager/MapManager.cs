@@ -782,6 +782,7 @@ namespace Client
             return x + 1 + (y + 1 << 8);
         }
 
+        //自我总结：这里的资源加载上下分层主要分为两层lod01和2345两层
         public void UpdatePiece(Vector2 pos)
         {
             Vector2 centerByPos = GetCenterByPos(pos, this.m_piece_plane_width);
