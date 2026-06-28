@@ -729,14 +729,17 @@ private void RefreshAfterViewByItem(ItemDefine itemDefine)
                 //  Debug.LogErrorFormat("choosedType:{0},,",  choosetype);
                 if (choosedType == 1)
                 {
+                    //新手迁城
                     MoveToBeginner();
                 }
                 else if (choosedType == 2)
                 {
+                    //领土迁城
                     MoveToTerritoria();
                 }
                 else if (choosedType == 3)
                 {
+                    //目标迁城
                     MoveToTargeted();
                 }
             }
