@@ -634,6 +634,7 @@ namespace Client
             WarFogMgr.IsApplyMask = apply;
         }
 
+        //临时揭示战争迷雾，但不永久解锁该区域
         public static bool AddTempOpenFog(int x, int y)
         {
             if (!WarFogMgr.HasFogAt(x, y, true))
