@@ -736,6 +736,9 @@ namespace Client
         {
             this.zoomStartDxf = (double)this.getCurrentCameraDxf();
         }
+        // 背景：什么是 DXF 和 scrollRate？
+        // DXF：是相机的距离/视野参数，DXF 越大 → 视野越远 → 看到的东西越小（缩小效果），DXF 越小 → 视野越近 → 看到的东西越大（放大效果）。
+        // scrollRate：是手势缩放的倍率因子。scrollRate < 1f 表示双指捏合放大的操作。
         public void OnTouchZoomed(int centerX, int centerY, float scrollRate)
         {
             if (this.isMovingToPos)
@@ -825,6 +828,8 @@ namespace Client
                 // 当接近软限制时，num4 接近 1
                 // 在限制范围外时，num4 为 0
                 //此处可以和边界回弹逻辑比较记忆num-num2相当于offset，只要currentCameraDxf小于num,num4就小于1
+
+                //这个公式的本质 它是一个线性映射，将 currentCameraDxf 从区间 [num2, num] 映射到 [0, 1]：
                 float num4 = Mathf.Max(0f, currentCameraDxf - num2) / (num - num2);
                 num4 = Mathf.Pow(num4, 2f);
 
@@ -834,6 +839,8 @@ namespace Client
                 //num4==1的时候不会产生阻尼效果，num4==0的时候会产生最大阻尼效果就是不能再动了
                 //因为已经进入软限制和硬限制之间的区域了，所以scrollRate应该加上一个阻尼值，
                 //这个阻尼值的计算方式是(1f - num4) * (num3 - scrollRate)，
+                //当阻尼系数 num4 趋近于 0（接近硬边界）时，scrollRate 会被强行拉到 num3，此时：
+                //自我理解：1-num4表示阻尼系数，num3-scrollRate表示目标值与当前值的差值，阻尼系数越大，阻尼效果越明显，
                 scrollRate += (1f - num4) * (num3 - scrollRate);
             }
             //num3应该理解为之前已经发生过的缩放率,就是之前的scrollRate,这个scrollRate是施加阻尼后的,
@@ -859,6 +866,7 @@ namespace Client
             }
             //下面这段代码的作用是：
             //在用户进行缩放操作时，保持缩放中心点在屏幕上的位置不变。
+            //防止缩放漂移问题
             Vector3 vector = touchTerrainPos2 - touchTerrainPos;
             //通过反向补偿偏移量，使缩放中心点保持在原来的位置
             float num8 = this.viewCenter.x - vector.x;
