@@ -742,6 +742,7 @@ namespace Client
             {
                 return;
             }
+            //相机是否正在执行平滑缩放动画,守卫条件
             if (this.isZoomingToDxf)
             {
                 return;
