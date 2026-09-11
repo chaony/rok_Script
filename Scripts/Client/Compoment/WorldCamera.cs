@@ -1873,6 +1873,16 @@ namespace Client
             {
                 return CalcRayEnterPos(ray2, enter);
             }
+            //以下是等效写法，区别是上面的加了camera.transform.position = Vector3.zero;
+
+            // Ray ray = camera.ScreenPointToRay(new Vector3(x, y, 0f));
+            // float enter = 0f;
+            // if (this.WorldMgr_terrainPlane.Raycast(ray, out enter))
+            // {
+            //     return CalcRayEnterPos(ray, enter);
+            // }
+            return new Vector3(INVALID_FLOAT_VALUE, INVALID_FLOAT_VALUE, INVALID_FLOAT_VALUE);
+
             return new Vector3(INVALID_FLOAT_VALUE, INVALID_FLOAT_VALUE, INVALID_FLOAT_VALUE);
         }
         public bool CheckCanDragout(float x, float y)
