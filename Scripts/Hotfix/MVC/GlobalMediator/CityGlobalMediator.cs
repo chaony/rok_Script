@@ -4959,6 +4959,7 @@ namespace Game
             m_clickTimer = Timer.Register(1, EndClickBounciong, UpdateClickBounciong, true);
         }
 
+        //点击弹跳动画效果，用于在玩家点击建筑物时产生视觉反馈
         private void UpdateClickBounciong(float dt)
         {
             m_clickBounceTime = m_clickBounceTime - 30; //Time.deltaTime*1000;
@@ -4969,7 +4970,7 @@ namespace Game
             {
                 float t = Mathf.Pow((m_clickBounceConst - m_clickBounceTime) * m_clickBounceA, 2);
 
-
+                //范围限制：t 被限制在 [0, 2] 范围内
                 t = Mathf.Min(2, Mathf.Max(0, t));
 
                 if (t > 1f)
