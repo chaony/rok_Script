@@ -393,7 +393,7 @@ namespace Client
                 int num2;
                 WarFogMgr.Id2Tile(id, out num, out num2);
                 WarFogMgr.LoopStack.RemoveAt(index);
-                if (WarFogMgr.FindConnection(num, num2))
+                if (WarFogMgr.FindConnection(num, num2))//只有是open时候才会是true
                 {
                     WarFogMgr.AddStack(num - 1, num2);
                     WarFogMgr.AddStack(num + 1, num2);
@@ -409,7 +409,7 @@ namespace Client
             {
                 return false;
             }
-            if (WarFogMgr.connectionData[WarFogMgr.Tile2Id(x, y)] != WarFogMgr.NotConnection)
+            if (WarFogMgr.connectionData[WarFogMgr.Tile2Id(x, y)] != WarFogMgr.NotConnection)//已经计算过，直接返回
             {
                 return false;
             }
@@ -451,7 +451,7 @@ namespace Client
                     if (WarFogMgr.GetConnection(i, j) == WarFogMgr.ConnectionClose)
                     {
                         int id = WarFogMgr.Tile2Id(i, j);
-                        return (int)WarFogMgr.ConnectionClose;
+                        return (int)WarFogMgr.ConnectionClose;//分组中有一个格子是断开的就返回
                     }
                 }
             }
